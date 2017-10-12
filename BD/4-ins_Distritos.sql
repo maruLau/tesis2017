@@ -1,0 +1,10 @@
+INSERT INTO `bd_paivapp`.`t_distrito` (`idt_distrito`, `idt_departamento`, `cod_distrito`, `descripcion`, `estado`) VALUES ('1', '8', '1', 'Alto Verá', '1');
+INSERT INTO `bd_paivapp`.`t_distrito` (`idt_distrito`, `idt_departamento`, `cod_distrito`, `descripcion`, `estado`) VALUES ('2', '8', '2', 'Bella Vista', '1');
+INSERT INTO `bd_paivapp`.`t_distrito` (`idt_distrito`, `idt_departamento`, `cod_distrito`, `descripcion`, `estado`) VALUES ('3', '8', '3', 'Cambyreta', '1');
+INSERT INTO `bd_paivapp`.`t_distrito` (`idt_distrito`, `idt_departamento`, `cod_distrito`, `descripcion`, `estado`) VALUES ('4', '8', '4', 'Cap. Meza', '1');
+INSERT INTO `bd_paivapp`.`t_distrito` (`idt_distrito`, `idt_departamento`, `cod_distrito`, `descripcion`, `estado`) VALUES ('5', '8', '5', 'Cap. Miranda', '1');
+INSERT INTO `bd_paivapp`.`t_distrito` (`idt_distrito`, `idt_departamento`, `cod_distrito`, `descripcion`, `estado`) VALUES ('6', '8', '6', 'Carlos A. Lopéz', '1');
+INSERT INTO `bd_paivapp`.`t_distrito` (`idt_distrito`, `idt_departamento`, `cod_distrito`, `descripcion`, `estado`) VALUES ('7', '8', '7', 'Carmen del Paraná', '1');
+INSERT INTO `bd_paivapp`.`t_distrito` (`idt_distrito`, `idt_departamento`, `cod_distrito`, `descripcion`, `estado`) VALUES ('8', '8', '8', 'Cnel. José F. Bogado', '1');
+INSERT INTO `bd_paivapp`.`t_distrito` (`idt_distrito`, `idt_departamento`, `cod_distrito`, `descripcion`, `estado`) VALUES ('9', '8', '9', 'Edelira', '1');
+INSERT INTO `bd_paivapp`.`t_distrito` (`idt_distrito`, `idt_departamento`, `cod_distrito`, `descripcion`, `estado`) VALUES ('10', '8', '10', 'Encarnación', '1');

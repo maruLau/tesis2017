@@ -1,0 +1,18 @@
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('1', '1', '00', 'Asunción', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('2', '1', '1', 'Concepción', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('3', '1', '2', 'San Pedro', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('4', '1', '3', 'Cordillera', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('5', '1', '4', 'Guairá', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('6', '1', '5', 'Caaguazú', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('7', '1', '6', 'Caazapá', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('8', '1', '7', 'Itapúa', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('9', '1', '8', 'Misiones', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('10', '1', '9', 'Paraguarí', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('11', '1', '10', 'Alto Paraná', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('12', '1', '11', 'Central', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('13', '1', '12', 'Ñeembucú', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('14', '1', '13', 'Amambay', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('15', '1', '14', 'Canindeyú', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('16', '1', '15', 'Presidente Hayes', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('17', '1', '16', 'Boquerón', '1');
+INSERT INTO `bd_paivapp`.`t_departamento` (`idt_departamento`, `idt_pais`, `cod_departamento`, `descripcion`, `estado`) VALUES ('18', '1', '17', 'Alto Paraguay', '1');

@@ -1,0 +1,1 @@
+INSERT INTO `bd_paivapp`.`t_reg_sanitaria` (`idt_reg_sanitaria`, `idt_pais`, `idt_departamento`, `idt_distrito`, `cod_reg`, `descripcion`, `estado`) VALUES ('1', '1', '8', '10', '7', 'VII Región Sanitaria Itapúa', '1');

@@ -1,0 +1,2 @@
+INSERT INTO `bd_paivapp`.`t_rol` (`idt_rol`, `categoria`, `descripcion`) VALUES ('1', 'Administrador', 'Adminsitrador Sys');
+INSERT INTO `bd_paivapp`.`t_rol` (`idt_rol`, `categoria`, `descripcion`) VALUES ('2', 'Regional', 'Enc. Regional');
