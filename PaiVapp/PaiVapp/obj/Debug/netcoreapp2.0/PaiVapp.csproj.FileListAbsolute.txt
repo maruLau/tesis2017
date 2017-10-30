@@ -2,10 +2,10 @@ C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\bin\Debug\netcoreapp2.
 C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\bin\Debug\netcoreapp2.0\PaiVapp.runtimeconfig.json
 C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\bin\Debug\netcoreapp2.0\PaiVapp.runtimeconfig.dev.json
 C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\bin\Debug\netcoreapp2.0\PaiVapp.dll
+C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\bin\Debug\netcoreapp2.0\PaiVapp.pdb
 C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\obj\Debug\netcoreapp2.0\PaiVapp.csprojResolveAssemblyReference.cache
 C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\obj\Debug\netcoreapp2.0\PaiVapp.csproj.CoreCompileInputs.cache
 C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\obj\Debug\netcoreapp2.0\PaiVapp.AssemblyInfoInputs.cache
 C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\obj\Debug\netcoreapp2.0\PaiVapp.AssemblyInfo.cs
-C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\bin\Debug\netcoreapp2.0\PaiVapp.pdb
 C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\obj\Debug\netcoreapp2.0\PaiVapp.dll
 C:\Users\Laura\Documents\GitHub\tesis2017\PaiVapp\PaiVapp\obj\Debug\netcoreapp2.0\PaiVapp.pdb
