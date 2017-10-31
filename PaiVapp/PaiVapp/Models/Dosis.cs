@@ -11,6 +11,7 @@ namespace PaiVapp.Models
         public int ID { get; set; }
         [Require]
         [StringLength(15, MinimumLength = 5, ErrorMessage = "Ejemplo '1er Dosis' o '1er Refuerzo'")]
+        [Display(Name = "Dosis")]
         public string NDosis { get; set; }
         [Require]
         public Boolean Estado { get; set; }

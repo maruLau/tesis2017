@@ -11,6 +11,7 @@ namespace PaiVapp.Models
         public int ID { get; set; }
         [Require]
         [StringLength(15, MinimumLength =3, ErrorMessage ="El nombre de la categoria no debe superar los 15 caracteres.")]
+        [Display(Name = "Categoría")]
         public string NCategoria { get; set; }
         [Require]
         [StringLength(40, MinimumLength = 3, ErrorMessage = "La descripción de la categoria no debe superar los 40 caracteres.")]

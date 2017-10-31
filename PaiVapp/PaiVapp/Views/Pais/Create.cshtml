@@ -1,10 +1,10 @@
 ﻿@model PaiVapp.Models.Pais
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Pais";
 }
 
-<h2>Create</h2>
+<h2>Crear</h2>
 
 <h4>Pais</h4>
 <hr />
@@ -17,22 +17,16 @@
                 <input asp-for="NPais" class="form-control" />
                 <span asp-validation-for="NPais" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver al Indice</a>
 </div>
 
 @section Scripts {

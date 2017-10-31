@@ -54,11 +54,13 @@ namespace PaiVapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,NPais,Estado")] Pais pais)
+        public async Task<IActionResult> Create([Bind("ID,NPais")] Pais pais)
         {
+            pais.Estado = true;
             if (ModelState.IsValid)
             {
                 _context.Add(pais);
+              
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -124,8 +126,7 @@ namespace PaiVapp.Controllers
                 return NotFound();
             }
 
-            var pais = await _context.Paises
-                .SingleOrDefaultAsync(m => m.ID == id);
+            var pais = await _context.Paises.SingleOrDefaultAsync(m => m.ID == id);
             if (pais == null)
             {
                 return NotFound();
@@ -139,8 +140,10 @@ namespace PaiVapp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+
             var pais = await _context.Paises.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Paises.Remove(pais);
+            pais.Estado = false;
+            _context.Update(pais);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

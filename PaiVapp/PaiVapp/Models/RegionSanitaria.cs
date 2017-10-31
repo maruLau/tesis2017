@@ -11,9 +11,11 @@ namespace PaiVapp.Models
         public int ID { get; set; }
         [Require]
         [Range(0,20)]
+        [Display(Name = "Cod Región Sanitaria")]
         public int CodRS { get; set; }
         [Require]
         [StringLength(20, MinimumLength =18, ErrorMessage ="El nombre debe ser como 'IV Región Sanitaria'")]
+        [Display(Name = "Región Sanitaria")]
         public string NRegionS { get; set; }
         [Require]
         public Boolean Estado { get; set; }

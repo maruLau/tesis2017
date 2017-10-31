@@ -11,9 +11,11 @@ namespace PaiVapp.Models
         public int ID { get; set; }
         [Require]
         [Range(0, 20)]
+        [Display(Name = "Cod Departamento")]
         public int CodDepartamento { get; set; }
         [Require]
         [StringLength(50, MinimumLength = 4, ErrorMessage = "El nombre del Departamento no puede ser menor a 4 caracteres ni mayor a 50")]
+        [Display(Name = "Departamento")]
         public string NDepartamento { get; set; }
         [Require]
         public Boolean Estado { get; set; }

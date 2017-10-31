@@ -11,6 +11,7 @@ namespace PaiVapp.Models
         public int ID { get; set; }
         [Require]
         [StringLength(15, MinimumLength=5, ErrorMessage ="Ejemplo 'Menor 1 año' o '5 Años'")]
+        [Display(Name = "Edad")]
         public string NEdad { get; set; }
         [Require]
         [Range(0, 521)]
