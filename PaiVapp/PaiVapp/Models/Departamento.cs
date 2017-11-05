@@ -19,8 +19,8 @@ namespace PaiVapp.Models
         public string NDepartamento { get; set; }
         [Require]
         public Boolean Estado { get; set; }
-
+       
         public Pais Pais { get; set; }
-        public ICollection<Distrito> Distrito { get; set; }
+        public ICollection<Distrito> Distritos { get; set; }
     }
 }

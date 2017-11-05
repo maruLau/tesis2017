@@ -1,0 +1,39 @@
+﻿@model PaiVapp.Models.Distrito
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Esta seguro que desea eliminar este Distrtito?</h3>
+<div>
+    <h4>Distrito</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodDistrito)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CodDistrito)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NDistrito)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NDistrito)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Eliminar" class="btn btn-default" /> |
+        <a asp-action="Index">Volver a la lista</a>
+    </form>
+</div>

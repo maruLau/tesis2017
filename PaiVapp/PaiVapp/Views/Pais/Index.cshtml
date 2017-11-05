@@ -1,5 +1,4 @@
-﻿@model IEnumerable<PaiVapp.Models.Pais>
-
+﻿@model PaginatedList<PaiVapp.Models.Pais>
 @{
     ViewData["Title"] = "Indice Pais";
 }
@@ -9,14 +8,24 @@
 <p>
     <a asp-action="Create">Crear Pais</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Buscar por nombre de Pais: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index">Mostrar Lista completa</a>
+        </p>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.NPais)
+                   
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PaisSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Pais</a>
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Estado)
+                    Estado
                 </th>
             <th></th>
         </tr>
@@ -39,3 +48,23 @@
 }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @prevDisabled">
+    Anterior
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-page="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-default @nextDisabled">
+    Siguiente
+</a>

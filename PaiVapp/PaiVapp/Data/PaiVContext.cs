@@ -8,6 +8,10 @@ namespace PaiVapp.Data
 {
     public class PaiVContext : DbContext
     {
+        public PaiVContext()
+        {
+        }
+
         public PaiVContext(DbContextOptions<PaiVContext> options) : base(options){}
 
         public DbSet<Pais> Paises { get; set; }

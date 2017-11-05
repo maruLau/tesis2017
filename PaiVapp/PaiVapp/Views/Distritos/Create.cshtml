@@ -1,0 +1,46 @@
+﻿@model PaiVapp.Models.Distrito
+
+@{
+    ViewData["Title"] = "Crear";
+}
+
+<h2>Crear</h2>
+
+<h4>Distrito</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Departamento" class="control-label"></label>
+                <select asp-for="Departamento" class="form-control" asp-items="ViewBag.DepartamentoID">
+                    <option value="">-- Seleccionar Departamento --</option>
+                </select>
+                <span asp-validation-for="Departamento" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="CodDistrito" class="control-label"></label>
+                <input asp-for="CodDistrito" class="form-control" />
+                <span asp-validation-for="CodDistrito" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NDistrito" class="control-label"></label>
+                <input asp-for="NDistrito" class="form-control" />
+                <span asp-validation-for="NDistrito" class="text-danger"></span>
+            </div>
+  
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

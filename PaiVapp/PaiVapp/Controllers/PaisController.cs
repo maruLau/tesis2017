@@ -18,13 +18,45 @@ namespace PaiVapp.Controllers
         {
             _context = context;
         }
-
-        // GET: Pais
+        /*
+        // GET: Pais ORIGINAL INDEX
         public async Task<IActionResult> Index()
         {
             return View(await _context.Paises.ToListAsync());
+        }*/
+        //Get: Pais
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["PaisSort"] = string.IsNullOrEmpty(sortOrder) ? "pais_desc" : "";
+            if(searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
+            var paises = from p in _context.Paises select p;
+            //si el buscar no viene vacio, consulta si existe algo parecido
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                paises = paises.Where(p => p.NPais.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "pais_desc":
+                    paises = paises.OrderByDescending(p => p.NPais);
+                    break;
+                default:
+                    paises = paises.OrderBy(p => p.NPais);
+                    break;
+            }
+            //cantidad de rows por pagina
+            int pageSize = 10;
+            return View(await PaginatedList<Pais>.CreateAsync(paises.AsNoTracking(), page ?? 1, pageSize));
         }
-
         // GET: Pais/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -74,8 +106,9 @@ namespace PaiVapp.Controllers
             {
                 return NotFound();
             }
-
+       
             var pais = await _context.Paises.SingleOrDefaultAsync(m => m.ID == id);
+        
             if (pais == null)
             {
                 return NotFound();
@@ -88,8 +121,9 @@ namespace PaiVapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,NPais,Estado")] Pais pais)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,NPais, Estado")] Pais pais)
         {
+
             if (id != pais.ID)
             {
                 return NotFound();

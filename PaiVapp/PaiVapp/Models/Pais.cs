@@ -16,6 +16,6 @@ namespace PaiVapp.Models
         [Require]
         public Boolean Estado { get; set; }
 
-        public ICollection<Departamento> Departamento { get; set; }
+        public ICollection<Departamento> Departamentos { get; set; }
     }
 }

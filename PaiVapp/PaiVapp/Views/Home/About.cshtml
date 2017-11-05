@@ -1,7 +1,21 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-ui/jquery-ui.js"></script>
+<link href="~/lib/jquery-ui/themes/base/jquery-ui.css" rel="stylesheet"/>
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
-
-<p>Use this area to provide additional information.</p>
+<p> acerca de</p>
+<div class="ui-widget">
+    <label for=" tags"> Tags:</label>
+    <input id="tags" />
+</div>
+<script>
+    $(function () {
+        var disponible = ["paraguay", "argentina", "brasil", "uganda"];
+        $("#tags").autocomplete({
+            source: disponible
+        })
+    });
+</script>
