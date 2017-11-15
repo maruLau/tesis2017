@@ -8,7 +8,7 @@ namespace PaiVapp.Models
 {
     public class Edad
     {
-        public int ID { get; set; }
+        public int EdadID { get; set; }
         [Require]
         [StringLength(15, MinimumLength=5, ErrorMessage ="Ejemplo 'Menor 1 año' o '5 Años'")]
         [Display(Name = "Edad")]
@@ -19,6 +19,6 @@ namespace PaiVapp.Models
         [Require]
         public Boolean Estado { get; set; }
 
-        public ICollection<DosisBiologico> DosisBiologico { get; set; }
+        public ICollection<DosisBiologico> DosisBiologicos { get; set; }
     }
 }

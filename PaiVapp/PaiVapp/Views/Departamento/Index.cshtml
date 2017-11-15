@@ -1,23 +1,19 @@
-﻿@model PaginatedList<PaiVapp.Models.Pais>
+﻿@model PaginatedList<PaiVapp.Models.Departamento>
+
 @{
-    ViewData["Title"] = "Lista Pais";
+    ViewData["Title"] = "Indice";
 }
 <div class="page-header">
-    <h2>Paises</h2>
+    <h2>Departamentos</h2>
 </div>
-
-
-<p>
-
-    <a asp-action="Create" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Pais</a>
-</p>
-
-
+    <p>
+        <a asp-action="Create" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Departamento</a>
+    </p>
 <div class="contornos">
     <form asp-action="Index" method="get">
         <div class="form-actions no-color">
             <p>
-                Buscar por nombre de Pais: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                Buscar por nombre de Departamento: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
                 <button type="submit" value=" Search" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                 |  <a asp-action="Index" class="btn btn-default"><span class="glyphicon glyphicon-th-list" aria-hidden="false"></span> Mostrar Lista completa</a>
 
@@ -28,7 +24,13 @@
         <thead>
             <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PaisSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Pais</a>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["CodV"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Codigo</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DepartamentoV"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Departamento</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PaisV"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Pais</a>
                 </th>
                 <th>
                     Estado
@@ -41,20 +43,28 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NPais)
+                        @Html.DisplayFor(modelItem => item.CodDepartamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NDepartamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pais.NPais)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Estado)
                     </td>
+                    
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.PaisID"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a> |
-                        <a asp-action="Details" asp-route-id="@item.PaisID"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a> |
-                        <a asp-action="Delete" asp-route-id="@item.PaisID"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                        <a asp-action="Edit" asp-route-id="@item.DepartamentoID"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a> |
+                        <a asp-action="Details" asp-route-id="@item.DepartamentoID"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a> |
+                        <a asp-action="Delete" asp-route-id="@item.DepartamentoID"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
     @{
         var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
         var nextDisabled = !Model.HasNextPage ? "disabled" : "";
@@ -75,4 +85,4 @@
        class="btn btn-default next @nextDisabled">
         Siguiente <span aria-hidden="true">&rarr;</span>
     </a>
-</div>
+    </div>

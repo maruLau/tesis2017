@@ -8,7 +8,7 @@ namespace PaiVapp.Models
 {
     public class Distrito
     {
-        public int ID { get; set; }
+        public int DistritoID { get; set; }
         [Require]
         [Range(0,100)]
         [Display(Name = "Cod Distrito")]
@@ -19,7 +19,9 @@ namespace PaiVapp.Models
         public string NDistrito { get; set; }
         [Require]
         public Boolean Estado { get; set; }
+        public int DepartamentoID { get; set; }
 
         public  Departamento Departamento {get;set;}
+        public ICollection <Servicio> Servicios { get; set; }
     }
 }

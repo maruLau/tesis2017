@@ -1,13 +1,13 @@
 ﻿@model PaiVapp.Models.Distrito
 
 @{
-    ViewData["Title"] = "Detalles";
+    ViewData["Title"] = "Detalle";
 }
 
-<h2>Detalles</h2>
+<h2>Detalle Distrito</h2>
 
 <div>
-    <h4>Distrito</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -28,9 +28,19 @@
         <dd>
             @Html.DisplayFor(model => model.Estado)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Departamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Departamento.DepartamentoID)
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Editar</a> |
-    <a asp-action="Index">Volver a la lista</a>
+    <a asp-action="Edit" asp-route-id="@Model.DistritoID">Editar</a> |
+    <a asp-action="Index"
+       class="btn btn-default previous ">
+        <span aria-hidden="true">&larr;</span>
+        Volver
+    </a>
 </div>

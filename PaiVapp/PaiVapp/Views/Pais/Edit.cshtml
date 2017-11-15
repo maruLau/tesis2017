@@ -1,64 +1,45 @@
 ﻿@model PaiVapp.Models.Pais
 
 @{
-    ViewData["Title"] = "EditarPais";
+    ViewData["Title"] = "Edit";
 }
 
-<h2>Editar</h2>
+<div class="page-header">
+    <h2>Editar Pais</h2>
+</div>
 
-<h4>Pais</h4>
-<hr />
-<div class="row">
+
+<div class="row  contornos">
     <div class="col-md-4">
         <form asp-action="Edit">
-      
-
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="PaisID" />
             <div class="form-group">
                 <label asp-for="NPais" class="control-label"></label>
                 <input asp-for="NPais" class="form-control" />
                 <span asp-validation-for="NPais" class="text-danger"></span>
             </div>
-            @if (Model.Estado == false)
-            {
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
-                        </label>
-                    </div>
-                   
-                </div>
-
-            }
-            else
-            {
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                        @Html.DisplayFor(model => model.Estado)  @Html.DisplayNameFor(model => model.Estado) 
-                        </label>
-                      
-                    </div>
-
-                </div>
-
-            }
-
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
+                    </label>
+                </div>
             </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-success" /> 
+               
+            </div>
+           
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Volver al Indice</a>
+    <a asp-action="Index" class="btn btn-default"><span aria-hidden="true">&larr;</span>Volver</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
+ 
 }
-

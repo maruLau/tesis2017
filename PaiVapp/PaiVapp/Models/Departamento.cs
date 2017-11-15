@@ -8,7 +8,7 @@ namespace PaiVapp.Models
 {
     public class Departamento
     {
-        public int ID { get; set; }
+        public int DepartamentoID { get; set; }
         [Require]
         [Range(0, 20)]
         [Display(Name = "Cod Departamento")]
@@ -19,8 +19,10 @@ namespace PaiVapp.Models
         public string NDepartamento { get; set; }
         [Require]
         public Boolean Estado { get; set; }
-       
+        public int PaisID { get; set; }
+
         public Pais Pais { get; set; }
         public ICollection<Distrito> Distritos { get; set; }
+        public ICollection<RegionSanitaria> RegionSanitarias { get; set; }
     }
 }

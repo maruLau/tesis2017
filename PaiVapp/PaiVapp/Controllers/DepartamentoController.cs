@@ -10,27 +10,29 @@ using PaiVapp.Models;
 
 namespace PaiVapp.Controllers
 {
-    public class DepartamentosController : Controller
+    public class DepartamentoController : Controller
     {
-        private PaiVContext _context = new PaiVContext(); 
+        private readonly PaiVContext _context;
 
-        public DepartamentosController(PaiVContext context)
+        public DepartamentoController(PaiVContext context)
         {
             _context = context;
         }
 
-        // GET: Departamentos
+        // GET: Departamento
         /*
         public async Task<IActionResult> Index()
         {
-            var departamentos = from s in _context.Departamentos.Include(d =>d.Pais.NPais) select s;
-            return View(await _context.Departamentos.OrderBy(s=> s.CodDepartamento).ToListAsync());
+            var paiVContext = _context.Departamentos.Include(d => d.Pais);
+            return View(await paiVContext.ToListAsync());
         }*/
-        //Get: Pais
+        
         public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            ViewData["DptoSort"] = sortOrder;
-            ViewData["PaisSort"] = sortOrder;
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["DepartamentoV"] = string.IsNullOrEmpty(sortOrder) ? "departamento_desc" : "";
+            ViewData["PaisV"] = string.IsNullOrEmpty(sortOrder) ? "pais_desc" : "";
+            ViewData["CodV"] = string.IsNullOrEmpty(sortOrder) ? "cod_desc" : "";
             if (searchString != null)
             {
                 page = 1;
@@ -40,29 +42,34 @@ namespace PaiVapp.Controllers
                 searchString = currentFilter;
             }
             ViewData["CurrentFilter"] = searchString;
-            var departamentos = from d in _context.Departamentos select d;
+            var departamento = from d in _context.Departamentos.Include(p=> p.Pais) select d;
+
             //si el buscar no viene vacio, consulta si existe algo parecido
             if (!String.IsNullOrEmpty(searchString))
             {
-                departamentos = departamentos.Where(d => d.NDepartamento.Contains(searchString) ||  d.Pais.NPais.Contains(searchString));
+                departamento = departamento.Where(d => d.NDepartamento.Contains(searchString));
             }
             switch (sortOrder)
             {
-                case "dpto_desc":
-                    departamentos = departamentos.OrderByDescending(d => d.CodDepartamento);
-                    break;
+                case "depart_desc":
+                    departamento = departamento.OrderByDescending(d => d.NDepartamento);
+               break;
                 case "pais_desc":
-
+                    departamento = departamento.OrderByDescending(d => d.Pais.NPais);
+                    break;
+                case "cod_desc":
+                    departamento = departamento.OrderByDescending(d => d.CodDepartamento);
                     break;
                 default:
-                    departamentos = departamentos.OrderBy(p => p.Pais.NPais);
-                    break;
+                    departamento = departamento.OrderBy(d => d.CodDepartamento);
+               break;
             }
-            int pageSize = 3;
-            return View(await PaginatedList<Departamento>.CreateAsync(departamentos.AsNoTracking(), page ?? 1, pageSize));
+            //cantidad de rows por pagina
+            int pageSize = 10;
+            return View(await PaginatedList<Departamento>.CreateAsync(departamento.AsNoTracking(), page ?? 1, pageSize));
         }
 
-        // GET: Departamentos/Details/5
+        // GET: Departamento/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -71,7 +78,8 @@ namespace PaiVapp.Controllers
             }
 
             var departamento = await _context.Departamentos
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .Include(d => d.Pais)
+                .SingleOrDefaultAsync(m => m.DepartamentoID == id);
             if (departamento == null)
             {
                 return NotFound();
@@ -79,68 +87,58 @@ namespace PaiVapp.Controllers
 
             return View(departamento);
         }
-        private void PopulatePaisDropDownList(object selectPais = null)
-        {
-            var paisQuery = from d in _context.Paises
-                                   orderby d.NPais
-                                   select d;
-            ViewBag.PaisID = new SelectList(paisQuery.AsNoTracking(), "ID", "NPais",  selectPais);
-        }
-        // GET: Departamentos/Create
+
+        // GET: Departamento/Create
         public IActionResult Create()
         {
-            PopulatePaisDropDownList();
-            
+            var query = from p in _context.Paises where p.Estado.Equals(true) select p;
+            ViewData["PaisID"] = new SelectList(query, "PaisID", "NPais");
             return View();
         }
 
-        // POST: Departamentos/Create
+        // POST: Departamento/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("ID,CodDepartamento,NDepartamento, PaisID")] Departamento departamento)
+        public async Task<IActionResult> Create([Bind("DepartamentoID,CodDepartamento,NDepartamento,PaisID")] Departamento departamento)
         {
-            departamento.Estado = true;
             if (ModelState.IsValid)
             {
+                departamento.Estado = true;
                 _context.Add(departamento);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            PopulatePaisDropDownList(departamento.Pais);
-            
+            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "NPais", departamento.PaisID);
             return View(departamento);
         }
 
-        // GET: Departamentos/Edit/5
+        // GET: Departamento/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-           
-            var departamento = await _context.Departamentos
-                .Include(i=>i.Pais)
-                .AsNoTracking()
-                .SingleOrDefaultAsync(m => m.ID == id);
+
+            var departamento = await _context.Departamentos.SingleOrDefaultAsync(m => m.DepartamentoID == id);
             if (departamento == null)
             {
                 return NotFound();
             }
-            PopulatePaisDropDownList(departamento.Pais);
+            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "NPais", departamento.PaisID);
             return View(departamento);
         }
 
-        // POST: Departamentos/Edit/5
+        // POST: Departamento/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CodDepartamento, NDepartamento, PaisID,Estado")] Departamento departamento)
+        public async Task<IActionResult> Edit(int id, [Bind("DepartamentoID,CodDepartamento,NDepartamento,Estado,PaisID")] Departamento departamento)
         {
-            if (id != departamento.ID)
+            if (id != departamento.DepartamentoID)
             {
                 return NotFound();
             }
@@ -154,7 +152,7 @@ namespace PaiVapp.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DepartamentoExists(departamento.ID))
+                    if (!DepartamentoExists(departamento.DepartamentoID))
                     {
                         return NotFound();
                     }
@@ -165,11 +163,11 @@ namespace PaiVapp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "NPais", departamento.PaisID);
             return View(departamento);
         }
 
-
-        // GET: Departamentos/Delete/5
+        // GET: Departamento/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -178,7 +176,8 @@ namespace PaiVapp.Controllers
             }
 
             var departamento = await _context.Departamentos
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .Include(d => d.Pais)
+                .SingleOrDefaultAsync(m => m.DepartamentoID == id);
             if (departamento == null)
             {
                 return NotFound();
@@ -187,22 +186,21 @@ namespace PaiVapp.Controllers
             return View(departamento);
         }
 
-        // POST: Departamentos/Delete/5
+        // POST: Departamento/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var departamento = await _context.Departamentos.SingleOrDefaultAsync(m => m.ID == id);
+            var departamento = await _context.Departamentos.SingleOrDefaultAsync(m => m.DepartamentoID == id);
             departamento.Estado = false;
-            _context.Update(departamento);
-          //  _context.Departamentos.Remove(departamento);
+            _context.Departamentos.Update(departamento);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DepartamentoExists(int id)
         {
-            return _context.Departamentos.Any(e => e.ID == id);
+            return _context.Departamentos.Any(e => e.DepartamentoID == id);
         }
     }
 }

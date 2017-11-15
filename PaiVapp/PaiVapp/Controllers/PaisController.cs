@@ -18,18 +18,18 @@ namespace PaiVapp.Controllers
         {
             _context = context;
         }
+
+        // GET: Pais
         /*
-        // GET: Pais ORIGINAL INDEX
         public async Task<IActionResult> Index()
         {
             return View(await _context.Paises.ToListAsync());
         }*/
-        //Get: Pais
         public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["PaisSort"] = string.IsNullOrEmpty(sortOrder) ? "pais_desc" : "";
-            if(searchString != null)
+            if (searchString != null)
             {
                 page = 1;
             }
@@ -38,11 +38,11 @@ namespace PaiVapp.Controllers
                 searchString = currentFilter;
             }
             ViewData["CurrentFilter"] = searchString;
-            var paises = from p in _context.Paises select p;
+            var paises = from p in _context.Paises orderby p.Estado  select p;
             //si el buscar no viene vacio, consulta si existe algo parecido
             if (!String.IsNullOrEmpty(searchString))
             {
-                paises = paises.Where(p => p.NPais.Contains(searchString));
+                paises = paises.Where(p => p.NPais.Contains(searchString)).OrderByDescending(p => p.Estado);
             }
             switch (sortOrder)
             {
@@ -57,6 +57,7 @@ namespace PaiVapp.Controllers
             int pageSize = 10;
             return View(await PaginatedList<Pais>.CreateAsync(paises.AsNoTracking(), page ?? 1, pageSize));
         }
+
         // GET: Pais/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -66,7 +67,7 @@ namespace PaiVapp.Controllers
             }
 
             var pais = await _context.Paises
-                .SingleOrDefaultAsync(m => m.ID == id);
+                .SingleOrDefaultAsync(m => m.PaisID == id);
             if (pais == null)
             {
                 return NotFound();
@@ -74,7 +75,11 @@ namespace PaiVapp.Controllers
 
             return View(pais);
         }
-
+        //reset formularios y volver
+        public IActionResult Cancelar()
+        {
+            return RedirectToAction(nameof(Index));
+        }
         // GET: Pais/Create
         public IActionResult Create()
         {
@@ -86,13 +91,12 @@ namespace PaiVapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,NPais")] Pais pais)
+        public async Task<IActionResult> Create([Bind("PaisID, NPais")] Pais pais)
         {
-            pais.Estado = true;
             if (ModelState.IsValid)
             {
+                pais.Estado = true;
                 _context.Add(pais);
-              
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -106,9 +110,8 @@ namespace PaiVapp.Controllers
             {
                 return NotFound();
             }
-       
-            var pais = await _context.Paises.SingleOrDefaultAsync(m => m.ID == id);
-        
+
+            var pais = await _context.Paises.SingleOrDefaultAsync(m => m.PaisID == id);
             if (pais == null)
             {
                 return NotFound();
@@ -121,10 +124,9 @@ namespace PaiVapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,NPais, Estado")] Pais pais)
+        public async Task<IActionResult> Edit(int id, [Bind("PaisID,NPais,Estado")] Pais pais)
         {
-
-            if (id != pais.ID)
+            if (id != pais.PaisID)
             {
                 return NotFound();
             }
@@ -138,7 +140,7 @@ namespace PaiVapp.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PaisExists(pais.ID))
+                    if (!PaisExists(pais.PaisID))
                     {
                         return NotFound();
                     }
@@ -155,12 +157,14 @@ namespace PaiVapp.Controllers
         // GET: Pais/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var pais = await _context.Paises.SingleOrDefaultAsync(m => m.ID == id);
+            var pais = await _context.Paises
+                .SingleOrDefaultAsync(m => m.PaisID == id);
             if (pais == null)
             {
                 return NotFound();
@@ -174,17 +178,16 @@ namespace PaiVapp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-
-            var pais = await _context.Paises.SingleOrDefaultAsync(m => m.ID == id);
+            var pais = await _context.Paises.SingleOrDefaultAsync(m => m.PaisID == id);
             pais.Estado = false;
-            _context.Update(pais);
+            _context.Paises.Update(pais);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PaisExists(int id)
         {
-            return _context.Paises.Any(e => e.ID == id);
+            return _context.Paises.Any(e => e.PaisID == id);
         }
     }
 }

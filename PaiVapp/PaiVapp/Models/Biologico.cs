@@ -8,7 +8,7 @@ namespace PaiVapp.Models
 {
     public class Biologico
     {
-        public int ID { get; set; }
+        public int BiologicoID { get; set; }
         [Require]
         [StringLength(20, MinimumLength = 5, ErrorMessage = "El nombre del Biológico no debe ser menor a 5 caracteres ni superior a 20")]
         [Display(Name = "Biológico")]
@@ -19,6 +19,6 @@ namespace PaiVapp.Models
         [Require]
         public Boolean Estado { get; set; }
 
-        public ICollection<DosisBiologico> DosisBiologico { get; set; }
+        public ICollection<DosisBiologico> DosisBiologicos { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace PaiVapp.Models
 {
     public class RegionSanitaria
     {
-        public int ID { get; set; }
+        public int RegionSanitariaID { get; set; }
         [Require]
         [Range(0,20)]
         [Display(Name = "Cod Región Sanitaria")]
@@ -19,8 +19,9 @@ namespace PaiVapp.Models
         public string NRegionS { get; set; }
         [Require]
         public Boolean Estado { get; set; }
+        public int DepartmentoID { get; set; }
 
         public Departamento Departamento { get; set; }
-        public ICollection<Servicio> Servicio { get; set; }
+        public ICollection<Servicio> Servicios { get; set; }
     }
 }

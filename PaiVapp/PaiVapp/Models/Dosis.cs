@@ -8,7 +8,7 @@ namespace PaiVapp.Models
 {
     public class Dosis
     {
-        public int ID { get; set; }
+        public int DosisID { get; set; }
         [Require]
         [StringLength(15, MinimumLength = 5, ErrorMessage = "Ejemplo '1er Dosis' o '1er Refuerzo'")]
         [Display(Name = "Dosis")]

@@ -8,7 +8,7 @@ namespace PaiVapp.Models
 {
     public class CategoriaServicio
     {
-        public int ID { get; set; }
+        public int CategoriaServicioID { get; set; }
         [Require]
         [StringLength(15, MinimumLength =3, ErrorMessage ="El nombre de la categoria no debe superar los 15 caracteres.")]
         [Display(Name = "Categoría")]
@@ -19,6 +19,6 @@ namespace PaiVapp.Models
         [Require]
         public Boolean Estado { get; set; }
 
-        public Servicio Servicio { get; set; }
+        public ICollection<Servicio> Servicios { get; set; }
     }
 }

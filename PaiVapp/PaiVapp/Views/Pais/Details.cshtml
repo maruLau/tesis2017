@@ -1,13 +1,13 @@
 ﻿@model PaiVapp.Models.Pais
 
 @{
-    ViewData["Title"] = "Detalle Pais";
+    ViewData["Title"] = "Detalle";
 }
 
-<h2>Detalle</h2>
+<h2>Detalle Pais</h2>
 
 <div>
-    <h4>Pais</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -25,6 +25,10 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Editar</a> |
-    <a asp-action="Index">Volver al Indice</a>
+    <a asp-action="Edit" asp-route-id="@Model.PaisID">Editar</a> |
+    <a asp-action="Index"
+       class="btn btn-default previous ">
+        <span aria-hidden="true">&larr;</span>
+        Volver
+    </a>
 </div>

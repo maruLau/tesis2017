@@ -29,9 +29,12 @@ namespace PaiVapp.Models
         [Range(1, 500)]
         [Display(Name = "Distancia a R.S.")]
         public int DistanciaRS { get; set; }
+        public int DistritoID { get; set; }
+        public int RegionSanitariaID { get; set; }
+        public int CatServicioID { get; set; }
 
         public RegionSanitaria RegSanitaria { get; set; }
         public Distrito Distrito { get; set; }
-       public ICollection<CategoriaServicio> CatServicio { get; set; }
+        public CategoriaServicio CategoriaServicio { get; set; }
     }
 }

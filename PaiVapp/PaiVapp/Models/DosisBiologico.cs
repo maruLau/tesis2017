@@ -8,7 +8,7 @@ namespace PaiVapp.Models
 {
     public class DosisBiologico
     {
-        public int ID { get; set; }
+        public int DosisBiologicoID { get; set; }
         [Require]
         public int EdadID { get; set; }
         [Require]

@@ -8,7 +8,7 @@ namespace PaiVapp.Models
 {
     public class Pais
     {
-        public int ID { get; set; }
+        public int PaisID { get; set; }
         [Require]
         [StringLength(50, MinimumLength = 4, ErrorMessage="El nombre del Pais no puede ser menor a 4 caracteres ni mayor a 50")]
         [Display(Name = "Pais")]
