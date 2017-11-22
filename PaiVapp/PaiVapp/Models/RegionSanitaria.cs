@@ -19,7 +19,7 @@ namespace PaiVapp.Models
         public string NRegionS { get; set; }
         [Require]
         public Boolean Estado { get; set; }
-        public int DepartmentoID { get; set; }
+        public int DepartamentoID { get; set; }
 
         public Departamento Departamento { get; set; }
         public ICollection<Servicio> Servicios { get; set; }
