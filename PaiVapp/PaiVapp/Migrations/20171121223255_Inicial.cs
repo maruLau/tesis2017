@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PaiVapp.Migrations
 {
-    public partial class ModelosInicial : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace PaiVapp.Migrations
                 name: "Biologico",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    BiologicoID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Descripcion = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
@@ -21,28 +21,43 @@ namespace PaiVapp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Biologico", x => x.ID);
+                    table.PrimaryKey("PK_Biologico", x => x.BiologicoID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CategoriaServicio",
+                columns: table => new
+                {
+                    CategoriaServicioID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Descripcion = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
+                    NCategoria = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoriaServicio", x => x.CategoriaServicioID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Dosis",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    DosisID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
                     NDosis = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Dosis", x => x.ID);
+                    table.PrimaryKey("PK_Dosis", x => x.DosisID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Edad",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    EdadID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
                     NEdad = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
@@ -50,28 +65,28 @@ namespace PaiVapp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Edad", x => x.ID);
+                    table.PrimaryKey("PK_Edad", x => x.EdadID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Pais",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    PaisID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
                     NPais = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Pais", x => x.ID);
+                    table.PrimaryKey("PK_Pais", x => x.PaisID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "DosisBiologico",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    DosisBiologicoID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     BiologicoID = table.Column<int>(type: "int", nullable: false),
                     Descripcion = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -80,24 +95,24 @@ namespace PaiVapp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DosisBiologico", x => x.ID);
+                    table.PrimaryKey("PK_DosisBiologico", x => x.DosisBiologicoID);
                     table.ForeignKey(
                         name: "FK_DosisBiologico_Biologico_BiologicoID",
                         column: x => x.BiologicoID,
                         principalTable: "Biologico",
-                        principalColumn: "ID",
+                        principalColumn: "BiologicoID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DosisBiologico_Dosis_DosisID",
                         column: x => x.DosisID,
                         principalTable: "Dosis",
-                        principalColumn: "ID",
+                        principalColumn: "DosisID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DosisBiologico_Edad_EdadID",
                         column: x => x.EdadID,
                         principalTable: "Edad",
-                        principalColumn: "ID",
+                        principalColumn: "EdadID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -105,65 +120,66 @@ namespace PaiVapp.Migrations
                 name: "Departamento",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    DepartamentoID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CodDepartamento = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
                     NDepartamento = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    PaisID = table.Column<int>(type: "int", nullable: true)
+                    PaisID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Departamento", x => x.ID);
+                    table.PrimaryKey("PK_Departamento", x => x.DepartamentoID);
                     table.ForeignKey(
                         name: "FK_Departamento_Pais_PaisID",
                         column: x => x.PaisID,
                         principalTable: "Pais",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "PaisID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Distrito",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    DistritoID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CodDistrito = table.Column<int>(type: "int", nullable: false),
-                    DepartamentoID = table.Column<int>(type: "int", nullable: true),
+                    DepartamentoID = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
                     NDistrito = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Distrito", x => x.ID);
+                    table.PrimaryKey("PK_Distrito", x => x.DistritoID);
                     table.ForeignKey(
                         name: "FK_Distrito_Departamento_DepartamentoID",
                         column: x => x.DepartamentoID,
                         principalTable: "Departamento",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "DepartamentoID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "RegionSanitaria",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    RegionSanitariaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CodRS = table.Column<int>(type: "int", nullable: false),
                     DepartamentoID = table.Column<int>(type: "int", nullable: true),
+                    DepartmentoID = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
                     NRegionS = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RegionSanitaria", x => x.ID);
+                    table.PrimaryKey("PK_RegionSanitaria", x => x.RegionSanitariaID);
                     table.ForeignKey(
                         name: "FK_RegionSanitaria_Departamento_DepartamentoID",
                         column: x => x.DepartamentoID,
                         principalTable: "Departamento",
-                        principalColumn: "ID",
+                        principalColumn: "DepartamentoID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -171,60 +187,42 @@ namespace PaiVapp.Migrations
                 name: "Servicio",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    ServicioID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Cabecera = table.Column<bool>(type: "bit", nullable: false),
+                    CatServicioID = table.Column<int>(type: "int", nullable: false),
+                    CategoriaServicioID = table.Column<int>(type: "int", nullable: true),
                     CodServicio = table.Column<int>(type: "int", nullable: false),
                     DistanciaRS = table.Column<int>(type: "int", nullable: false),
-                    DistritoID = table.Column<int>(type: "int", nullable: true),
+                    DistritoID = table.Column<int>(type: "int", nullable: false),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
                     NServicio = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     PoblacionMenor = table.Column<int>(type: "int", nullable: false),
-                    RegSanitariaID = table.Column<int>(type: "int", nullable: true),
+                    RegionSanitariaID = table.Column<int>(type: "int", nullable: false),
                     TipoServicio = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Servicio", x => x.ID);
+                    table.PrimaryKey("PK_Servicio", x => x.ServicioID);
+                    table.ForeignKey(
+                        name: "FK_Servicio_CategoriaServicio_CategoriaServicioID",
+                        column: x => x.CategoriaServicioID,
+                        principalTable: "CategoriaServicio",
+                        principalColumn: "CategoriaServicioID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Servicio_Distrito_DistritoID",
                         column: x => x.DistritoID,
                         principalTable: "Distrito",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "DistritoID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Servicio_RegionSanitaria_RegSanitariaID",
-                        column: x => x.RegSanitariaID,
+                        name: "FK_Servicio_RegionSanitaria_RegionSanitariaID",
+                        column: x => x.RegionSanitariaID,
                         principalTable: "RegionSanitaria",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "RegionSanitariaID",
+                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "CategoriaServicio",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Descripcion = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
-                    Estado = table.Column<bool>(type: "bit", nullable: false),
-                    NCategoria = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    ServicioID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CategoriaServicio", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_CategoriaServicio_Servicio_ServicioID",
-                        column: x => x.ServicioID,
-                        principalTable: "Servicio",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CategoriaServicio_ServicioID",
-                table: "CategoriaServicio",
-                column: "ServicioID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Departamento_PaisID",
@@ -257,21 +255,23 @@ namespace PaiVapp.Migrations
                 column: "DepartamentoID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Servicio_CategoriaServicioID",
+                table: "Servicio",
+                column: "CategoriaServicioID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Servicio_DistritoID",
                 table: "Servicio",
                 column: "DistritoID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Servicio_RegSanitariaID",
+                name: "IX_Servicio_RegionSanitariaID",
                 table: "Servicio",
-                column: "RegSanitariaID");
+                column: "RegionSanitariaID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "CategoriaServicio");
-
             migrationBuilder.DropTable(
                 name: "DosisBiologico");
 
@@ -286,6 +286,9 @@ namespace PaiVapp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Edad");
+
+            migrationBuilder.DropTable(
+                name: "CategoriaServicio");
 
             migrationBuilder.DropTable(
                 name: "Distrito");

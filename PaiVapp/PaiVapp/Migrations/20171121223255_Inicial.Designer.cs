@@ -11,8 +11,8 @@ using System;
 namespace PaiVapp.Migrations
 {
     [DbContext(typeof(PaiVContext))]
-    [Migration("20171109010544_CorrecModelos")]
-    partial class CorrecModelos
+    [Migration("20171121223255_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -196,7 +196,7 @@ namespace PaiVapp.Migrations
 
             modelBuilder.Entity("PaiVapp.Models.Servicio", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ServicioID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<bool>("Cabecera");
@@ -211,6 +211,8 @@ namespace PaiVapp.Migrations
 
                     b.Property<int>("DistritoID");
 
+                    b.Property<bool>("Estado");
+
                     b.Property<string>("NServicio")
                         .HasMaxLength(50);
 
@@ -220,7 +222,7 @@ namespace PaiVapp.Migrations
 
                     b.Property<int>("TipoServicio");
 
-                    b.HasKey("ID");
+                    b.HasKey("ServicioID");
 
                     b.HasIndex("CategoriaServicioID");
 

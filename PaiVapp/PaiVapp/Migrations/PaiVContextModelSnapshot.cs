@@ -195,7 +195,7 @@ namespace PaiVapp.Migrations
 
             modelBuilder.Entity("PaiVapp.Models.Servicio", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ServicioID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<bool>("Cabecera");
@@ -210,6 +210,8 @@ namespace PaiVapp.Migrations
 
                     b.Property<int>("DistritoID");
 
+                    b.Property<bool>("Estado");
+
                     b.Property<string>("NServicio")
                         .HasMaxLength(50);
 
@@ -219,7 +221,7 @@ namespace PaiVapp.Migrations
 
                     b.Property<int>("TipoServicio");
 
-                    b.HasKey("ID");
+                    b.HasKey("ServicioID");
 
                     b.HasIndex("CategoriaServicioID");
 

@@ -1,0 +1,39 @@
+﻿@model PaiVapp.Models.CategoriaServicio
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+<h2>Detalle Categoria</h2>
+
+<div>
+    <h4>CategoriaServicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NCategoria)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NCategoria)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CategoriaServicioID" class="btn btn-default  ">Editar</a> |
+    <a asp-action="Index"
+       class="btn btn-default  ">
+        <span aria-hidden="true">&larr;</span>
+        Volver
+    </a>
+</div>

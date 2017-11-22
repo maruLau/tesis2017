@@ -8,7 +8,7 @@ namespace PaiVapp.Models
 {
     public class Servicio
     {
-        public int ID { get; set; }
+        public int ServicioID { get; set; }
         [Require]
         [Range(0, 20)]
         [Display(Name = "Cod Servicio")]
@@ -29,6 +29,10 @@ namespace PaiVapp.Models
         [Range(1, 500)]
         [Display(Name = "Distancia a R.S.")]
         public int DistanciaRS { get; set; }
+
+        [Require]
+        public Boolean Estado { get; set; }
+
         public int DistritoID { get; set; }
         public int RegionSanitariaID { get; set; }
         public int CatServicioID { get; set; }

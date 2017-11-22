@@ -1,21 +1,26 @@
-﻿@model PaiVapp.Models.Pais
+﻿@model PaiVapp.Models.CategoriaServicio
+
 
 @{
     ViewData["Title"] = "Eliminar";
 }
-
-<h2>Eliminar Pais</h2>
-
-<h3>¿Esta seguro de querer eliminar este Pais?</h3>
+<h2>Eliminar Categoria</h2>
+<h3>¿Esta seguro de querer eliminar esta categoria?</h3>
 <div>
 
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NPais)
+            @Html.DisplayNameFor(model => model.NCategoria)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.NPais)
+            @Html.DisplayFor(model => model.NCategoria)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Estado)
@@ -26,7 +31,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="PaisID" />
+        <input type="hidden" asp-for="CategoriaServicioID" />
         <input type="submit" value="Eliminar" class="btn btn-default" /> |
         <a asp-action="Index"
            class="btn btn-default ">
