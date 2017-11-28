@@ -1,0 +1,45 @@
+﻿@model PaiVapp.Models.DosisBiologico
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DosisBiologico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Biologico)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Biologico.BiologicoID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dosis)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dosis.DosisID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Edad.EdadID)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="DosisBiologicoID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

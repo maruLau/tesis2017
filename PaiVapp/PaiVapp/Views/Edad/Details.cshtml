@@ -1,0 +1,36 @@
+﻿@model PaiVapp.Models.Edad
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Edad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NEdad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NEdad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Semanas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Semanas)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EdadID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

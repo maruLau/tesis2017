@@ -1,0 +1,42 @@
+﻿@model PaiVapp.Models.DosisBiologico
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DosisBiologico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Biologico)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Biologico.BiologicoID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Dosis)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dosis.DosisID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Edad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Edad.EdadID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DosisBiologicoID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
