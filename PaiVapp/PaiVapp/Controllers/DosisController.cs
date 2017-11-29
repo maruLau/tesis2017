@@ -20,9 +20,19 @@ namespace PaiVapp.Controllers
         }
 
         // GET: Dosis
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
             return View(await _context.Dosis.ToListAsync());
+        }*/
+        public async Task<IActionResult> Index(int? page)
+        {
+
+            var dosis = from p in _context.Dosis orderby p.Estado select p;
+
+
+            //cantidad de rows por pagina
+            int pageSize = 10;
+            return View(await PaginatedList<Dosis>.CreateAsync(dosis.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: Dosis/Details/5
@@ -54,10 +64,11 @@ namespace PaiVapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DosisID,NDosis,Estado")] Dosis dosis)
+        public async Task<IActionResult> Create([Bind("DosisID,NDosis")] Dosis dosis)
         {
             if (ModelState.IsValid)
             {
+                dosis.Estado = true;
                 _context.Add(dosis);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -140,6 +151,7 @@ namespace PaiVapp.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var dosis = await _context.Dosis.SingleOrDefaultAsync(m => m.DosisID == id);
+            dosis.Estado = false;
             _context.Dosis.Remove(dosis);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

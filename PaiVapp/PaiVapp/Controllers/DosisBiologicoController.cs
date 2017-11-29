@@ -20,10 +20,22 @@ namespace PaiVapp.Controllers
         }
 
         // GET: DosisBiologico
+        /*
         public async Task<IActionResult> Index()
         {
             var paiVContext = _context.DosisBiologicos.Include(d => d.Biologico).Include(d => d.Dosis).Include(d => d.Edad);
             return View(await paiVContext.ToListAsync());
+        }
+        */
+        public async Task<IActionResult> Index(int? page)
+        {
+
+            var db = from p in _context.DosisBiologicos.Include(d => d.Biologico).Include(d => d.Dosis).Include(d => d.Edad) orderby p.Edad.Semanas select p;
+
+
+            //cantidad de rows por pagina
+            int pageSize = 10;
+            return View(await PaginatedList<DosisBiologico>.CreateAsync(db.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: DosisBiologico/Details/5
@@ -50,9 +62,10 @@ namespace PaiVapp.Controllers
         // GET: DosisBiologico/Create
         public IActionResult Create()
         {
-            ViewData["BiologicoID"] = new SelectList(_context.Biologicos, "BiologicoID", "BiologicoID");
-            ViewData["DosisID"] = new SelectList(_context.Dosis, "DosisID", "DosisID");
-            ViewData["EdadID"] = new SelectList(_context.Edades, "EdadID", "EdadID");
+            ViewData["BiologicoID"] = new SelectList(_context.Biologicos, "BiologicoID", "NBiologico");
+            ViewData["DosisID"] = new SelectList(_context.Dosis, "DosisID", "NDosis");
+            
+            ViewData["EdadID"] = new SelectList(_context.Edades.OrderBy(m =>m.Semanas).OrderBy(p=>p.EdadID), "EdadID", "Semanas");
             return View();
         }
 
@@ -69,9 +82,9 @@ namespace PaiVapp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BiologicoID"] = new SelectList(_context.Biologicos, "BiologicoID", "BiologicoID", dosisBiologico.BiologicoID);
-            ViewData["DosisID"] = new SelectList(_context.Dosis, "DosisID", "DosisID", dosisBiologico.DosisID);
-            ViewData["EdadID"] = new SelectList(_context.Edades, "EdadID", "EdadID", dosisBiologico.EdadID);
+            ViewData["BiologicoID"] = new SelectList(_context.Biologicos, "BiologicoID", "NBiologico", dosisBiologico.BiologicoID);
+            ViewData["DosisID"] = new SelectList(_context.Dosis, "DosisID", "NDosis", dosisBiologico.DosisID);
+            ViewData["EdadID"] = new SelectList(_context.Edades, "EdadID", "Semanas", dosisBiologico.EdadID);
             return View(dosisBiologico);
         }
 
@@ -88,9 +101,9 @@ namespace PaiVapp.Controllers
             {
                 return NotFound();
             }
-            ViewData["BiologicoID"] = new SelectList(_context.Biologicos, "BiologicoID", "BiologicoID", dosisBiologico.BiologicoID);
-            ViewData["DosisID"] = new SelectList(_context.Dosis, "DosisID", "DosisID", dosisBiologico.DosisID);
-            ViewData["EdadID"] = new SelectList(_context.Edades, "EdadID", "EdadID", dosisBiologico.EdadID);
+            ViewData["BiologicoID"] = new SelectList(_context.Biologicos, "BiologicoID", "NBiologico", dosisBiologico.BiologicoID);
+            ViewData["DosisID"] = new SelectList(_context.Dosis, "DosisID", "NDosis", dosisBiologico.DosisID);
+            ViewData["EdadID"] = new SelectList(_context.Edades, "EdadID", "Semanas", dosisBiologico.EdadID);
             return View(dosisBiologico);
         }
 
@@ -126,9 +139,9 @@ namespace PaiVapp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BiologicoID"] = new SelectList(_context.Biologicos, "BiologicoID", "BiologicoID", dosisBiologico.BiologicoID);
-            ViewData["DosisID"] = new SelectList(_context.Dosis, "DosisID", "DosisID", dosisBiologico.DosisID);
-            ViewData["EdadID"] = new SelectList(_context.Edades, "EdadID", "EdadID", dosisBiologico.EdadID);
+            ViewData["BiologicoID"] = new SelectList(_context.Biologicos, "BiologicoID", "NBiologico", dosisBiologico.BiologicoID);
+            ViewData["DosisID"] = new SelectList(_context.Dosis, "DosisID", "NDosis", dosisBiologico.DosisID);
+            ViewData["EdadID"] = new SelectList(_context.Edades, "EdadID", "Semanas", dosisBiologico.EdadID);
             return View(dosisBiologico);
         }
 

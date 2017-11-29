@@ -1,47 +1,74 @@
-﻿@model IEnumerable<PaiVapp.Models.Biologico>
-
+﻿@model PaginatedList<PaiVapp.Models.Biologico>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista";
 }
+<div class="page-header">
+    <h2>Biologicos</h2>
+</div>
 
-<h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+
+    <a asp-action="Create" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Biologico</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
+
+
+<div class="contornos">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.NBiologico)
+                    Biologico
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Descripcion)
+                    Descripcion
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Estado)
+                    Estado
                 </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NBiologico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.BiologicoID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.BiologicoID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.BiologicoID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NBiologico)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.BiologicoID"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a> |
+                        <a asp-action="Details" asp-route-id="@item.BiologicoID"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a> |
+                        <a asp-action="Delete" asp-route-id="@item.BiologicoID"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default previous @prevDisabled">
+        <span aria-hidden="true">&larr;</span>
+        Anterior
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default next @nextDisabled">
+        Siguiente <span aria-hidden="true">&rarr;</span>
+    </a>
+</div>

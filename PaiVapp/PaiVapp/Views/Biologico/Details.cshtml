@@ -1,13 +1,11 @@
 ﻿@model PaiVapp.Models.Biologico
 
+
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalle";
 }
-
-<h2>Details</h2>
-
+<h2>Detalle Biologico</h2>
 <div>
-    <h4>Biologico</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -31,6 +29,10 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.BiologicoID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.BiologicoID">Editar</a> |
+    <a asp-action="Index"
+       class="btn btn-default ">
+        <span aria-hidden="true">&larr;</span>
+        Volver
+    </a>
 </div>

@@ -20,11 +20,22 @@ namespace PaiVapp.Controllers
         }
 
         // GET: Edad
+        /*
         public async Task<IActionResult> Index()
         {
             return View(await _context.Edades.ToListAsync());
         }
+        */
+        public async Task<IActionResult> Index(int? page)
+        {
 
+            var edad = from p in _context.Edades orderby p.Estado select p;
+
+
+            //cantidad de rows por pagina
+            int pageSize = 10;
+            return View(await PaginatedList<Edad>.CreateAsync(edad.AsNoTracking(), page ?? 1, pageSize));
+        }
         // GET: Edad/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -54,10 +65,11 @@ namespace PaiVapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EdadID,NEdad,Semanas,Estado")] Edad edad)
+        public async Task<IActionResult> Create([Bind("EdadID,NEdad,Semanas")] Edad edad)
         {
             if (ModelState.IsValid)
             {
+                edad.Estado = true;
                 _context.Add(edad);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -140,7 +152,8 @@ namespace PaiVapp.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var edad = await _context.Edades.SingleOrDefaultAsync(m => m.EdadID == id);
-            _context.Edades.Remove(edad);
+            edad.Estado = false;
+            _context.Edades.Update(edad);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -20,9 +20,20 @@ namespace PaiVapp.Controllers
         }
 
         // GET: Biologico
+        /*
         public async Task<IActionResult> Index()
         {
             return View(await _context.Biologicos.ToListAsync());
+        }*/
+        public async Task<IActionResult> Index(int? page)
+        {
+
+            var b = from p in _context.Biologicos orderby p.Estado select p;
+
+
+            //cantidad de rows por pagina
+            int pageSize = 10;
+            return View(await PaginatedList<Biologico>.CreateAsync(b.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // GET: Biologico/Details/5
@@ -54,10 +65,11 @@ namespace PaiVapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BiologicoID,NBiologico,Descripcion,Estado")] Biologico biologico)
+        public async Task<IActionResult> Create([Bind("BiologicoID,NBiologico,Descripcion")] Biologico biologico)
         {
             if (ModelState.IsValid)
             {
+                biologico.Estado = true;
                 _context.Add(biologico);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -140,6 +152,7 @@ namespace PaiVapp.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var biologico = await _context.Biologicos.SingleOrDefaultAsync(m => m.BiologicoID == id);
+            biologico.Estado = false;
             _context.Biologicos.Remove(biologico);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

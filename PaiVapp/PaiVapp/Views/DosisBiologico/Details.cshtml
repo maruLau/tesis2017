@@ -1,14 +1,10 @@
 ﻿@model PaiVapp.Models.DosisBiologico
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalle";
 }
-
-<h2>Details</h2>
-
+<h2>Detalle Dosis por Biologico</h2>
 <div>
-    <h4>DosisBiologico</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -37,6 +33,10 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.DosisBiologicoID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.DosisBiologicoID">Editar</a> |
+    <a asp-action="Index"
+       class="btn btn-default ">
+        <span aria-hidden="true">&larr;</span>
+        Volver
+    </a>
 </div>
