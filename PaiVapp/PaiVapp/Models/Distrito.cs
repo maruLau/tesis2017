@@ -23,5 +23,6 @@ namespace PaiVapp.Models
 
         public  Departamento Departamento {get;set;}
         public ICollection <Servicio> Servicios { get; set; }
+        public ICollection<Captacion> Captaciones { get; set; }
     }
 }

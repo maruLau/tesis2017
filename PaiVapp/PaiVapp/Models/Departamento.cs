@@ -24,6 +24,7 @@ namespace PaiVapp.Models
         public Pais Pais { get; set; }
         public ICollection<Distrito> Distritos { get; set; }
         public RegionSanitaria RegionSanitaria { get; set; }
-       // public ICollection<RegionSanitaria> RegionSanitarias { get; set; }
+        public ICollection<Captacion> Captaciones { get; set; }
+        // public ICollection<RegionSanitaria> RegionSanitarias { get; set; }
     }
 }

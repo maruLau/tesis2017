@@ -24,6 +24,7 @@ namespace PaiVapp.Data
         public DbSet<Biologico> Biologicos { get; set; }
         public DbSet<Dosis> Dosis { get; set; }
         public DbSet<DosisBiologico> DosisBiologicos { get; set; }
+        public DbSet<Captacion> Captaciones { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,6 +43,21 @@ namespace PaiVapp.Data
             modelBuilder.Entity<Biologico>().ToTable("Biologico");
             modelBuilder.Entity<Dosis>().ToTable("Dosis");
             modelBuilder.Entity<DosisBiologico>().ToTable("DosisBiologico");
+            modelBuilder.Entity<Captacion>().ToTable("Captacion")
+                .HasOne(p => p.Pais)
+                .WithMany(c => c.Captaciones)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .IsRequired();
+            modelBuilder.Entity<Captacion>().ToTable("Captacion")
+               .HasOne(p => p.Distrito)
+               .WithMany(c => c.Captaciones)
+               .OnDelete(DeleteBehavior.ClientSetNull)
+               .IsRequired();
+            modelBuilder.Entity<Captacion>().ToTable("Captacion")
+               .HasOne(p => p.Departamento)
+               .WithMany(c => c.Captaciones)
+               .OnDelete(DeleteBehavior.ClientSetNull)
+               .IsRequired();
 
         }
         

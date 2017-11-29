@@ -11,9 +11,10 @@ using System;
 namespace PaiVapp.Migrations
 {
     [DbContext(typeof(PaiVContext))]
-    partial class PaiVContextModelSnapshot : ModelSnapshot
+    [Migration("20171129202917_AddECaptacion")]
+    partial class AddECaptacion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

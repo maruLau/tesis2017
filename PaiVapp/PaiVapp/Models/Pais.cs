@@ -17,5 +17,6 @@ namespace PaiVapp.Models
         public Boolean Estado { get; set; }
 
         public ICollection<Departamento> Departamentos { get; set; }
+        public ICollection<Captacion> Captaciones { get; set; }
     }
 }

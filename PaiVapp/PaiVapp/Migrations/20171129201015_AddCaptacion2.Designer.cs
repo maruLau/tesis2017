@@ -11,9 +11,10 @@ using System;
 namespace PaiVapp.Migrations
 {
     [DbContext(typeof(PaiVContext))]
-    partial class PaiVContextModelSnapshot : ModelSnapshot
+    [Migration("20171129201015_AddCaptacion2")]
+    partial class AddCaptacion2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,8 +79,6 @@ namespace PaiVapp.Migrations
                     b.Property<string>("EmailMadre");
 
                     b.Property<string>("EmailPT");
-
-                    b.Property<bool>("Estado");
 
                     b.Property<int>("EstadoNut");
 
