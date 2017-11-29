@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace PaiVapp.Models
 {
     public class RegionSanitaria
     {
+        [Key]
         public int RegionSanitariaID { get; set; }
         [Require]
         [Range(0,20)]
@@ -19,7 +21,8 @@ namespace PaiVapp.Models
         public string NRegionS { get; set; }
         [Require]
         public Boolean Estado { get; set; }
-        public int DepartmentoID { get; set; }
+        [ForeignKey("Departamento")]
+        public int DepartamentoID { get; set; }
 
         public Departamento Departamento { get; set; }
         public ICollection<Servicio> Servicios { get; set; }

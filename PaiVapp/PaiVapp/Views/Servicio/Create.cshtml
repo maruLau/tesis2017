@@ -1,0 +1,81 @@
+﻿@model PaiVapp.Models.Servicio
+
+@{
+    ViewData["Title"] = "Crear";
+}
+<h2>Crear Servicio</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RegionSanitariaID" class="control-label">Región Sanitaria</label>
+                <select asp-for="RegionSanitariaID" class="form-control" asp-items="ViewBag.RegionSanitariaID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DistritoID" class="control-label">Distrito</label>
+                <select asp-for="DistritoID" class="form-control" asp-items="ViewBag.DistritoID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodServicio" class="control-label">Codigo</label>
+                <input asp-for="CodServicio" class="form-control" />
+                <span asp-validation-for="CodServicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NServicio" class="control-label">Servicio</label>
+                <input asp-for="NServicio" class="form-control" />
+                <span asp-validation-for="NServicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoriaServicioID" class="control-label">Categoria</label>
+                <select asp-for="CategoriaServicioID" class="form-control" asp-items="ViewBag.CategoriaServicioID"></select>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Cabecera" /> @Html.DisplayNameFor(model => model.Cabecera)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoServicio" class="control-label">Tipo Servicio</label>
+                <select asp-for="TipoServicio" class="form-control">
+                    <option value="0">Urbano</option>
+                    <option value="1">Rural</option>
+                </select>
+
+                <span asp-validation-for="TipoServicio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PoblacionMenor" class="control-label"></label>
+                <input asp-for="PoblacionMenor" class="form-control" />
+                <span asp-validation-for="PoblacionMenor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DistanciaRS" class="control-label"> Distancia en Kilometros</label>
+                <input asp-for="DistanciaRS" class="form-control" />
+                <span asp-validation-for="DistanciaRS" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index"
+       class="btn btn-default ">
+        <span aria-hidden="true">&larr;</span>
+        Volver
+    </a>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

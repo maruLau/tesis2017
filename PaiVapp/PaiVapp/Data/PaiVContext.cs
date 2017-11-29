@@ -31,7 +31,12 @@ namespace PaiVapp.Data
             modelBuilder.Entity<Departamento>().ToTable("Departamento");
             modelBuilder.Entity<Distrito>().ToTable("Distrito");
             modelBuilder.Entity<RegionSanitaria>().ToTable("RegionSanitaria");
-            modelBuilder.Entity<Servicio>().ToTable("Servicio");
+// modelBuilder.Entity<Servicio>().ToTable("Servicio");
+            modelBuilder.Entity<Servicio>().ToTable("Servicio")
+                .HasOne(p => p.RegionSanitaria)
+                .WithMany(b => b.Servicios)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .IsRequired();
             modelBuilder.Entity<CategoriaServicio>().ToTable("CategoriaServicio");
             modelBuilder.Entity<Edad>().ToTable("Edad");
             modelBuilder.Entity<Biologico>().ToTable("Biologico");

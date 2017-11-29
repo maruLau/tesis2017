@@ -1,38 +1,34 @@
-﻿@model PaginatedList<PaiVapp.Models.Pais>
+﻿@model PaginatedList<PaiVapp.Models.RegionSanitaria>
+
 @{
-    ViewData["Title"] = "Lista";
+    ViewData["Title"] = "Lista Pais";
 }
 <div class="page-header">
-    <h2>Paises</h2>
+    <h2>Region Sanitaria</h2>
 </div>
 
 
 <p>
 
-    <a asp-action="Create" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Pais</a>
+    <a asp-action="Create" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Región Sanitaria</a>
 </p>
-
-
 <div class="contornos">
-    <form asp-action="Index" method="get">
-        <div class="form-actions no-color">
-            <p>
-                Buscar por nombre de Pais: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-                <button type="submit" value=" Search" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                |  <a asp-action="Index" class="btn btn-default"><span class="glyphicon glyphicon-th-list" aria-hidden="false"></span> Mostrar Lista completa</a>
-
-            </p>
-        </div>
-    </form>
     <table class="table table-bordered table-striped table-hover">
         <thead>
             <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PaisSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Pais</a>
+                    Departamento
+                </th>
+                <th>
+                   Cod
+                </th>
+                <th>
+                    Region
                 </th>
                 <th>
                     Estado
                 </th>
+
                 <th></th>
             </tr>
         </thead>
@@ -41,16 +37,23 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NPais)
+                        @Html.DisplayFor(modelItem => item.Departamento.NDepartamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodRS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NRegionS)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Estado)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.PaisID"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a> |
-                        <a asp-action="Details" asp-route-id="@item.PaisID"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a> |
-                        <a asp-action="Delete" asp-route-id="@item.PaisID"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                        <a asp-action="Edit" asp-route-id="@item.RegionSanitariaID"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a> |
+                        <a asp-action="Details" asp-route-id="@item.RegionSanitariaID"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a> |
+                        <a asp-action="Delete" asp-route-id="@item.RegionSanitariaID"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                     </td>
+
                 </tr>
             }
         </tbody>

@@ -1,0 +1,58 @@
+﻿@model PaiVapp.Models.RegionSanitaria
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="page-header">
+    <h2>Editar Pais</h2>
+</div>
+
+
+<div class="row  contornos">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="RegionSanitariaID" />
+                <div class="form-group">
+                    <label asp-for="DepartamentoID" class="control-label"></label>
+                    <select asp-for="DepartamentoID" class="form-control" asp-items="ViewBag.DepartamentoID"></select>
+                    <span asp-validation-for="DepartamentoID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CodRS" class="control-label"></label>
+                    <input asp-for="CodRS" class="form-control" />
+                    <span asp-validation-for="CodRS" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NRegionS" class="control-label"></label>
+                    <input asp-for="NRegionS" class="form-control" />
+                    <span asp-validation-for="NRegionS" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-default"><span aria-hidden="true">&larr;</span>Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

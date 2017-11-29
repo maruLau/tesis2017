@@ -1,0 +1,82 @@
+﻿@model PaiVapp.Models.Servicio
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+<h2>Eliminar Pais</h2>
+<h3>¿Esta seguro de querer eliminar este Servicio?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Distrito)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Distrito.NDistrito)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegionSanitaria)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegionSanitaria.NRegionS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CodServicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CodServicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NServicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NServicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoriaServicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CategoriaServicio.NCategoria)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cabecera)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cabecera)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoServicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoServicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PoblacionMenor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PoblacionMenor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DistanciaRS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DistanciaRS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+       
+       
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ServicioID" />
+        <input type="submit" value="Eliminar" class="btn btn-default" /> |
+        <a asp-action="Index"
+           class="btn btn-default ">
+            <span aria-hidden="true">&larr;</span>
+            Volver
+        </a>
+    </form>
+</div>

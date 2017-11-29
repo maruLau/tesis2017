@@ -1,0 +1,48 @@
+﻿@model PaiVapp.Models.RegionSanitaria
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+<h2>Eliminar Pais</h2>
+<h3>¿Esta seguro de querer eliminar esta Region Sanitaria?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Departamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Departamento.NDepartamento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CodRS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CodRS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NRegionS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NRegionS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+      
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="RegionSanitariaID" />
+        <input type="submit" value="Eliminar" class="btn btn-default" /> |
+        <a asp-action="Index"
+           class="btn btn-default ">
+            <span aria-hidden="true">&larr;</span>
+            Volver
+        </a>
+    </form>
+</div>

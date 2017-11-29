@@ -1,0 +1,99 @@
+﻿@model PaginatedList<PaiVapp.Models.Servicio>
+
+@{
+    ViewData["Title"] = "Lista";
+}
+<div class="page-header">
+    <h2>Servicios</h2>
+</div>
+
+
+<p>
+
+    <a asp-action="Create" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Servicio</a>
+</p>
+
+<div class="contornos">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Distrito
+                </th>
+                <th>
+                   Region Sanitaria
+                </th>
+                <th>
+                   Cod
+                </th>
+                <th>
+                  Servicio
+                </th>
+
+                <th>
+                  Categoria
+                </th>
+
+
+                <th>
+                    Estado
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Distrito.NDistrito)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegionSanitaria.NRegionS)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CodServicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NServicio)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoriaServicio.NCategoria)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ServicioID"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a> |
+                        <a asp-action="Details" asp-route-id="@item.ServicioID"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a> |
+                        <a asp-action="Delete" asp-route-id="@item.ServicioID"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                    </td>
+
+            
+                </tr>
+            }
+        </tbody>
+    </table>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default previous @prevDisabled">
+        <span aria-hidden="true">&larr;</span>
+        Anterior
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default next @nextDisabled">
+        Siguiente <span aria-hidden="true">&rarr;</span>
+    </a>
+</div>

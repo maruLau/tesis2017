@@ -11,8 +11,8 @@ using System;
 namespace PaiVapp.Migrations
 {
     [DbContext(typeof(PaiVContext))]
-    [Migration("20171121223255_Inicial")]
-    partial class Inicial
+    [Migration("20171129162504_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -178,9 +178,7 @@ namespace PaiVapp.Migrations
 
                     b.Property<int>("CodRS");
 
-                    b.Property<int?>("DepartamentoID");
-
-                    b.Property<int>("DepartmentoID");
+                    b.Property<int>("DepartamentoID");
 
                     b.Property<bool>("Estado");
 
@@ -189,7 +187,8 @@ namespace PaiVapp.Migrations
 
                     b.HasKey("RegionSanitariaID");
 
-                    b.HasIndex("DepartamentoID");
+                    b.HasIndex("DepartamentoID")
+                        .IsUnique();
 
                     b.ToTable("RegionSanitaria");
                 });
@@ -201,9 +200,7 @@ namespace PaiVapp.Migrations
 
                     b.Property<bool>("Cabecera");
 
-                    b.Property<int>("CatServicioID");
-
-                    b.Property<int?>("CategoriaServicioID");
+                    b.Property<int>("CategoriaServicioID");
 
                     b.Property<int>("CodServicio");
 
@@ -218,7 +215,8 @@ namespace PaiVapp.Migrations
 
                     b.Property<int>("PoblacionMenor");
 
-                    b.Property<int>("RegionSanitariaID");
+                    b.Property<int?>("RegionSanitariaID")
+                        .IsRequired();
 
                     b.Property<int>("TipoServicio");
 
@@ -270,25 +268,26 @@ namespace PaiVapp.Migrations
             modelBuilder.Entity("PaiVapp.Models.RegionSanitaria", b =>
                 {
                     b.HasOne("PaiVapp.Models.Departamento", "Departamento")
-                        .WithMany("RegionSanitarias")
-                        .HasForeignKey("DepartamentoID");
+                        .WithOne("RegionSanitaria")
+                        .HasForeignKey("PaiVapp.Models.RegionSanitaria", "DepartamentoID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PaiVapp.Models.Servicio", b =>
                 {
                     b.HasOne("PaiVapp.Models.CategoriaServicio", "CategoriaServicio")
                         .WithMany("Servicios")
-                        .HasForeignKey("CategoriaServicioID");
+                        .HasForeignKey("CategoriaServicioID")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("PaiVapp.Models.Distrito", "Distrito")
                         .WithMany("Servicios")
                         .HasForeignKey("DistritoID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("PaiVapp.Models.RegionSanitaria", "RegSanitaria")
+                    b.HasOne("PaiVapp.Models.RegionSanitaria", "RegionSanitaria")
                         .WithMany("Servicios")
-                        .HasForeignKey("RegionSanitariaID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RegionSanitariaID");
                 });
 #pragma warning restore 612, 618
         }

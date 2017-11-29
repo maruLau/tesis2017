@@ -1,0 +1,44 @@
+﻿@model PaiVapp.Models.RegionSanitaria
+@{
+    ViewData["Title"] = "Crear";
+}
+<h2>Crear Region Sanitaria</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DepartamentoID" class="control-label"></label>
+                <select asp-for="DepartamentoID" class="form-control" asp-items="ViewBag.DepartamentoID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodRS" class="control-label"></label>
+                <input asp-for="CodRS" class="form-control" />
+                <span asp-validation-for="CodRS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NRegionS" class="control-label"></label>
+                <input asp-for="NRegionS" class="form-control" />
+                <span asp-validation-for="NRegionS" class="text-danger"></span>
+            </div>
+      
+            
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"
+       class="btn btn-default ">
+        <span aria-hidden="true">&larr;</span>
+        Volver
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

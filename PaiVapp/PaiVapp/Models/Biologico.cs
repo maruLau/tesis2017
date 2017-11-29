@@ -10,7 +10,7 @@ namespace PaiVapp.Models
     {
         public int BiologicoID { get; set; }
         [Require]
-        [StringLength(20, MinimumLength = 5, ErrorMessage = "El nombre del Biológico no debe ser menor a 5 caracteres ni superior a 20")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "El nombre del Biológico no debe ser menor a 5 caracteres ni superior a 20")]
         [Display(Name = "Biológico")]
         public string NBiologico { get; set; }
         [Display(Name = "Descripción")]

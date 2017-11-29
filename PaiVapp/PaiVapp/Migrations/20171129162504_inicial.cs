@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PaiVapp.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -167,8 +167,7 @@ namespace PaiVapp.Migrations
                     RegionSanitariaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CodRS = table.Column<int>(type: "int", nullable: false),
-                    DepartamentoID = table.Column<int>(type: "int", nullable: true),
-                    DepartmentoID = table.Column<int>(type: "int", nullable: false),
+                    DepartamentoID = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
                     NRegionS = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
                 },
@@ -180,7 +179,7 @@ namespace PaiVapp.Migrations
                         column: x => x.DepartamentoID,
                         principalTable: "Departamento",
                         principalColumn: "DepartamentoID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,8 +189,7 @@ namespace PaiVapp.Migrations
                     ServicioID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Cabecera = table.Column<bool>(type: "bit", nullable: false),
-                    CatServicioID = table.Column<int>(type: "int", nullable: false),
-                    CategoriaServicioID = table.Column<int>(type: "int", nullable: true),
+                    CategoriaServicioID = table.Column<int>(type: "int", nullable: false),
                     CodServicio = table.Column<int>(type: "int", nullable: false),
                     DistanciaRS = table.Column<int>(type: "int", nullable: false),
                     DistritoID = table.Column<int>(type: "int", nullable: false),
@@ -209,7 +207,7 @@ namespace PaiVapp.Migrations
                         column: x => x.CategoriaServicioID,
                         principalTable: "CategoriaServicio",
                         principalColumn: "CategoriaServicioID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Servicio_Distrito_DistritoID",
                         column: x => x.DistritoID,
@@ -221,7 +219,7 @@ namespace PaiVapp.Migrations
                         column: x => x.RegionSanitariaID,
                         principalTable: "RegionSanitaria",
                         principalColumn: "RegionSanitariaID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -252,7 +250,8 @@ namespace PaiVapp.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_RegionSanitaria_DepartamentoID",
                 table: "RegionSanitaria",
-                column: "DepartamentoID");
+                column: "DepartamentoID",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Servicio_CategoriaServicioID",
