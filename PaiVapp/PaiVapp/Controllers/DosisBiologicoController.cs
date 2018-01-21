@@ -27,6 +27,7 @@ namespace PaiVapp.Controllers
             return View(await paiVContext.ToListAsync());
         }
         */
+     
         public async Task<IActionResult> Index(int? page)
         {
 

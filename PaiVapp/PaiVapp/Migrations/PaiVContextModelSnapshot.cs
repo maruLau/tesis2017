@@ -43,19 +43,19 @@ namespace PaiVapp.Migrations
                     b.Property<int>("CaptacionID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AlerMedic");
+                    b.Property<int>("AlergMedic");
 
                     b.Property<int>("AlergOtros");
 
-                    b.Property<string>("AlergVacuna");
+                    b.Property<int>("AlergVacuna");
 
                     b.Property<int>("AlergiaSN");
 
                     b.Property<string>("Barrio");
 
-                    b.Property<int>("CI");
+                    b.Property<int?>("CI");
 
-                    b.Property<int>("CICod");
+                    b.Property<string>("CICod");
 
                     b.Property<int>("CIMadre");
 
@@ -68,7 +68,11 @@ namespace PaiVapp.Migrations
                     b.Property<int?>("DepartamentoID")
                         .IsRequired();
 
+                    b.Property<string>("DescMedic");
+
                     b.Property<string>("DescOtros");
+
+                    b.Property<string>("DescVacuna");
 
                     b.Property<string>("Direccion");
 
@@ -82,6 +86,8 @@ namespace PaiVapp.Migrations
                     b.Property<bool>("Estado");
 
                     b.Property<int>("EstadoNut");
+
+                    b.Property<string>("Etnia");
 
                     b.Property<DateTime>("FNacimiento");
 
@@ -104,7 +110,7 @@ namespace PaiVapp.Migrations
 
                     b.Property<string>("ReferenciaDir");
 
-                    b.Property<bool>("RegNacimiento");
+                    b.Property<int>("RegNacimiento");
 
                     b.Property<string>("SApellido");
 
@@ -114,13 +120,15 @@ namespace PaiVapp.Migrations
 
                     b.Property<int>("Sexo");
 
-                    b.Property<string>("TComIndigena");
+                    b.Property<int>("TCI");
 
                     b.Property<string>("TNombre");
 
                     b.Property<int>("TSeguro");
 
                     b.Property<string>("Telefono");
+
+                    b.Property<string>("Telefono1");
 
                     b.HasKey("CaptacionID");
 
@@ -260,6 +268,9 @@ namespace PaiVapp.Migrations
                     b.Property<string>("NPais")
                         .HasMaxLength(50);
 
+                    b.Property<string>("Nacionalidad")
+                        .HasMaxLength(50);
+
                     b.HasKey("PaisID");
 
                     b.ToTable("Pais");
@@ -285,6 +296,32 @@ namespace PaiVapp.Migrations
                         .IsUnique();
 
                     b.ToTable("RegionSanitaria");
+                });
+
+            modelBuilder.Entity("PaiVapp.Models.Registro", b =>
+                {
+                    b.Property<int>("RegistroID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CaptacionID");
+
+                    b.Property<int>("DosisBiologicoID");
+
+                    b.Property<string>("Encargado");
+
+                    b.Property<bool>("Estado");
+
+                    b.Property<int>("FechaV");
+
+                    b.Property<string>("Lote");
+
+                    b.HasKey("RegistroID");
+
+                    b.HasIndex("CaptacionID");
+
+                    b.HasIndex("DosisBiologicoID");
+
+                    b.ToTable("Registro");
                 });
 
             modelBuilder.Entity("PaiVapp.Models.Servicio", b =>
@@ -380,6 +417,17 @@ namespace PaiVapp.Migrations
                         .WithOne("RegionSanitaria")
                         .HasForeignKey("PaiVapp.Models.RegionSanitaria", "DepartamentoID")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PaiVapp.Models.Registro", b =>
+                {
+                    b.HasOne("PaiVapp.Models.Captacion", "Captacion")
+                        .WithMany("Registros")
+                        .HasForeignKey("CaptacionID");
+
+                    b.HasOne("PaiVapp.Models.DosisBiologico", "DosisBiologico")
+                        .WithMany("Registros")
+                        .HasForeignKey("DosisBiologicoID");
                 });
 
             modelBuilder.Entity("PaiVapp.Models.Servicio", b =>

@@ -52,7 +52,7 @@ namespace PaiVapp.Controllers
         {
             ViewData["DepartamentoID"] = new SelectList(_context.Departamentos, "DepartamentoID", "NDepartamento");
             ViewData["DistritoID"] = new SelectList(_context.Distritos, "DistritoID", "NDistrito");
-            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "NPais");
+            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "Nacionalidad");
             return View();
         }
 
@@ -61,18 +61,17 @@ namespace PaiVapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CaptacionID,CI,CICod,RegNacimiento,PNombre,SNombre,TNombre,PApellido,SApellido,FNacimiento,Sexo,PaisID,CIMadre,NomApMadre,EmailMadre,CIPadreT,NomApPadre,EmailPT,DepartamentoID,DistritoID,Barrio,Direccion,ReferenciaDir,Telefono,Localidad,ComIndigena,TComIndigena,AlergiaSN,AlergVacuna,AlerMedic,AlergOtros,DescOtros,EstadoNut,Pani,LacMaterna,SegMedico,TSeguro,DSeguro")] Captacion captacion)
+        public async Task<IActionResult> Create([Bind("CaptacionID,TCI,CI,CICod,RegNacimiento,PNombre,SNombre,TNombre,PApellido,SApellido,FNacimiento,Sexo,PaisID,CIMadre,NomApMadre,EmailMadre,CIPadreT,NomApPadre,EmailPT,DepartamentoID,DistritoID,Barrio,Direccion,ReferenciaDir,Telefono1,Telefono,Localidad,ComIndigena,Etnia,AlergiaSN,AlergVacuna,DescVacuna,AlergMedic,DescMedic,AlergOtros,DescOtros,EstadoNut,Pani,LacMaterna,SegMedico,TSeguro,DSeguro")] Captacion captacion)
         {
             if (ModelState.IsValid)
             {
-                captacion.Estado = true;
                 _context.Add(captacion);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DepartamentoID"] = new SelectList(_context.Departamentos, "DepartamentoID", "NDepartamento", captacion.DepartamentoID);
             ViewData["DistritoID"] = new SelectList(_context.Distritos, "DistritoID", "NDistrito", captacion.DistritoID);
-            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "NPais", captacion.PaisID);
+            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "Nacionalidad", captacion.PaisID);
             return View(captacion);
         }
 
@@ -91,7 +90,7 @@ namespace PaiVapp.Controllers
             }
             ViewData["DepartamentoID"] = new SelectList(_context.Departamentos, "DepartamentoID", "NDepartamento", captacion.DepartamentoID);
             ViewData["DistritoID"] = new SelectList(_context.Distritos, "DistritoID", "NDistrito", captacion.DistritoID);
-            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "NPais", captacion.PaisID);
+            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "Nacionalidad", captacion.PaisID);
             return View(captacion);
         }
 
@@ -100,7 +99,7 @@ namespace PaiVapp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaptacionID,CI,CICod,RegNacimiento,PNombre,SNombre,TNombre,PApellido,SApellido,FNacimiento,Sexo,PaisID,CIMadre,NomApMadre,EmailMadre,CIPadreT,NomApPadre,EmailPT,DepartamentoID,DistritoID,Barrio,Direccion,ReferenciaDir,Telefono,Localidad,ComIndigena,TComIndigena,AlergiaSN,AlergVacuna,AlerMedic,AlergOtros,DescOtros,EstadoNut,Pani,LacMaterna,SegMedico,TSeguro,DSeguro")] Captacion captacion)
+        public async Task<IActionResult> Edit(int id, [Bind("CaptacionID,TCI,CI,CICod,RegNacimiento,PNombre,SNombre,TNombre,PApellido,SApellido,FNacimiento,Sexo,PaisID,CIMadre,NomApMadre,EmailMadre,CIPadreT,NomApPadre,EmailPT,DepartamentoID,DistritoID,Barrio,Direccion,ReferenciaDir,Telefono1,Telefono,Localidad,ComIndigena,Etnia,AlergiaSN,AlergVacuna,DescVacuna,AlergMedic,DescMedic,AlergOtros,DescOtros,EstadoNut,Pani,LacMaterna,SegMedico,TSeguro,DSeguro,Estado")] Captacion captacion)
         {
             if (id != captacion.CaptacionID)
             {
@@ -111,6 +110,7 @@ namespace PaiVapp.Controllers
             {
                 try
                 {
+                    captacion.Estado = true;
                     _context.Update(captacion);
                     await _context.SaveChangesAsync();
                 }
@@ -129,7 +129,7 @@ namespace PaiVapp.Controllers
             }
             ViewData["DepartamentoID"] = new SelectList(_context.Departamentos, "DepartamentoID", "NDepartamento", captacion.DepartamentoID);
             ViewData["DistritoID"] = new SelectList(_context.Distritos, "DistritoID", "NDistrito", captacion.DistritoID);
-            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "NPais", captacion.PaisID);
+            ViewData["PaisID"] = new SelectList(_context.Paises, "PaisID", "Nacionalidad", captacion.PaisID);
             return View(captacion);
         }
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PaiVapp.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Completo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,7 @@ namespace PaiVapp.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Descripcion = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
-                    NBiologico = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true)
+                    NBiologico = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -75,7 +75,8 @@ namespace PaiVapp.Migrations
                     PaisID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Estado = table.Column<bool>(type: "bit", nullable: false),
-                    NPais = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    NPais = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Nacionalidad = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -183,6 +184,78 @@ namespace PaiVapp.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Captacion",
+                columns: table => new
+                {
+                    CaptacionID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AlergMedic = table.Column<int>(type: "int", nullable: false),
+                    AlergOtros = table.Column<int>(type: "int", nullable: false),
+                    AlergVacuna = table.Column<int>(type: "int", nullable: false),
+                    AlergiaSN = table.Column<int>(type: "int", nullable: false),
+                    Barrio = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CI = table.Column<int>(type: "int", nullable: true),
+                    CICod = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CIMadre = table.Column<int>(type: "int", nullable: false),
+                    CIPadreT = table.Column<int>(type: "int", nullable: false),
+                    ComIndigena = table.Column<int>(type: "int", nullable: false),
+                    DSeguro = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DepartamentoID = table.Column<int>(type: "int", nullable: false),
+                    DescMedic = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DescOtros = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DescVacuna = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DistritoID = table.Column<int>(type: "int", nullable: false),
+                    EmailMadre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailPT = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
+                    EstadoNut = table.Column<int>(type: "int", nullable: false),
+                    Etnia = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LacMaterna = table.Column<int>(type: "int", nullable: false),
+                    Localidad = table.Column<int>(type: "int", nullable: false),
+                    NomApMadre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NomApPadre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PApellido = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PNombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaisID = table.Column<int>(type: "int", nullable: false),
+                    Pani = table.Column<int>(type: "int", nullable: false),
+                    ReferenciaDir = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RegNacimiento = table.Column<int>(type: "int", nullable: false),
+                    SApellido = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SNombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SegMedico = table.Column<int>(type: "int", nullable: false),
+                    Sexo = table.Column<int>(type: "int", nullable: false),
+                    TCI = table.Column<int>(type: "int", nullable: false),
+                    TNombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TSeguro = table.Column<int>(type: "int", nullable: false),
+                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telefono1 = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Captacion", x => x.CaptacionID);
+                    table.ForeignKey(
+                        name: "FK_Captacion_Departamento_DepartamentoID",
+                        column: x => x.DepartamentoID,
+                        principalTable: "Departamento",
+                        principalColumn: "DepartamentoID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Captacion_Distrito_DistritoID",
+                        column: x => x.DistritoID,
+                        principalTable: "Distrito",
+                        principalColumn: "DistritoID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Captacion_Pais_PaisID",
+                        column: x => x.PaisID,
+                        principalTable: "Pais",
+                        principalColumn: "PaisID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Servicio",
                 columns: table => new
                 {
@@ -222,6 +295,51 @@ namespace PaiVapp.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Registro",
+                columns: table => new
+                {
+                    RegistroID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CaptacionID = table.Column<int>(type: "int", nullable: false),
+                    DosisBiologicoID = table.Column<int>(type: "int", nullable: false),
+                    Encargado = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
+                    FechaV = table.Column<int>(type: "int", nullable: false),
+                    Lote = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Registro", x => x.RegistroID);
+                    table.ForeignKey(
+                        name: "FK_Registro_Captacion_CaptacionID",
+                        column: x => x.CaptacionID,
+                        principalTable: "Captacion",
+                        principalColumn: "CaptacionID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Registro_DosisBiologico_DosisBiologicoID",
+                        column: x => x.DosisBiologicoID,
+                        principalTable: "DosisBiologico",
+                        principalColumn: "DosisBiologicoID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Captacion_DepartamentoID",
+                table: "Captacion",
+                column: "DepartamentoID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Captacion_DistritoID",
+                table: "Captacion",
+                column: "DistritoID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Captacion_PaisID",
+                table: "Captacion",
+                column: "PaisID");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Departamento_PaisID",
                 table: "Departamento",
@@ -254,6 +372,16 @@ namespace PaiVapp.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Registro_CaptacionID",
+                table: "Registro",
+                column: "CaptacionID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Registro_DosisBiologicoID",
+                table: "Registro",
+                column: "DosisBiologicoID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Servicio_CategoriaServicioID",
                 table: "Servicio",
                 column: "CategoriaServicioID");
@@ -272,10 +400,25 @@ namespace PaiVapp.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DosisBiologico");
+                name: "Registro");
 
             migrationBuilder.DropTable(
                 name: "Servicio");
+
+            migrationBuilder.DropTable(
+                name: "Captacion");
+
+            migrationBuilder.DropTable(
+                name: "DosisBiologico");
+
+            migrationBuilder.DropTable(
+                name: "CategoriaServicio");
+
+            migrationBuilder.DropTable(
+                name: "RegionSanitaria");
+
+            migrationBuilder.DropTable(
+                name: "Distrito");
 
             migrationBuilder.DropTable(
                 name: "Biologico");
@@ -285,15 +428,6 @@ namespace PaiVapp.Migrations
 
             migrationBuilder.DropTable(
                 name: "Edad");
-
-            migrationBuilder.DropTable(
-                name: "CategoriaServicio");
-
-            migrationBuilder.DropTable(
-                name: "Distrito");
-
-            migrationBuilder.DropTable(
-                name: "RegionSanitaria");
 
             migrationBuilder.DropTable(
                 name: "Departamento");

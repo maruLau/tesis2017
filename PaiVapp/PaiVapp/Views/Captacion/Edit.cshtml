@@ -14,6 +14,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CaptacionID" />
             <div class="form-group">
+                <label asp-for="TCI" class="control-label"></label>
+                <input asp-for="TCI" class="form-control" />
+                <span asp-validation-for="TCI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="CI" class="control-label"></label>
                 <input asp-for="CI" class="form-control" />
                 <span asp-validation-for="CI" class="text-danger"></span>
@@ -24,11 +29,9 @@
                 <span asp-validation-for="CICod" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="RegNacimiento" /> @Html.DisplayNameFor(model => model.RegNacimiento)
-                    </label>
-                </div>
+                <label asp-for="RegNacimiento" class="control-label"></label>
+                <input asp-for="RegNacimiento" class="form-control" />
+                <span asp-validation-for="RegNacimiento" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PNombre" class="control-label"></label>
@@ -126,6 +129,11 @@
                 <span asp-validation-for="ReferenciaDir" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Telefono1" class="control-label"></label>
+                <input asp-for="Telefono1" class="form-control" />
+                <span asp-validation-for="Telefono1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Telefono" class="control-label"></label>
                 <input asp-for="Telefono" class="form-control" />
                 <span asp-validation-for="Telefono" class="text-danger"></span>
@@ -141,9 +149,9 @@
                 <span asp-validation-for="ComIndigena" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TComIndigena" class="control-label"></label>
-                <input asp-for="TComIndigena" class="form-control" />
-                <span asp-validation-for="TComIndigena" class="text-danger"></span>
+                <label asp-for="Etnia" class="control-label"></label>
+                <input asp-for="Etnia" class="form-control" />
+                <span asp-validation-for="Etnia" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AlergiaSN" class="control-label"></label>
@@ -156,9 +164,19 @@
                 <span asp-validation-for="AlergVacuna" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AlerMedic" class="control-label"></label>
-                <input asp-for="AlerMedic" class="form-control" />
-                <span asp-validation-for="AlerMedic" class="text-danger"></span>
+                <label asp-for="DescVacuna" class="control-label"></label>
+                <input asp-for="DescVacuna" class="form-control" />
+                <span asp-validation-for="DescVacuna" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AlergMedic" class="control-label"></label>
+                <input asp-for="AlergMedic" class="form-control" />
+                <span asp-validation-for="AlergMedic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescMedic" class="control-label"></label>
+                <input asp-for="DescMedic" class="form-control" />
+                <span asp-validation-for="DescMedic" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AlergOtros" class="control-label"></label>
@@ -199,6 +217,13 @@
                 <label asp-for="DSeguro" class="control-label"></label>
                 <input asp-for="DSeguro" class="form-control" />
                 <span asp-validation-for="DSeguro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Estado" /> @Html.DisplayNameFor(model => model.Estado)
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

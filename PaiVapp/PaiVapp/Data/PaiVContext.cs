@@ -25,6 +25,7 @@ namespace PaiVapp.Data
         public DbSet<Dosis> Dosis { get; set; }
         public DbSet<DosisBiologico> DosisBiologicos { get; set; }
         public DbSet<Captacion> Captaciones { get; set; }
+        public DbSet<Registro> Registros { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -58,7 +59,16 @@ namespace PaiVapp.Data
                .WithMany(c => c.Captaciones)
                .OnDelete(DeleteBehavior.ClientSetNull)
                .IsRequired();
-
+            modelBuilder.Entity<Registro>().ToTable("Registro")
+                .HasOne(p=> p.Captacion)
+                .WithMany(r=> r.Registros)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+               .IsRequired();
+            modelBuilder.Entity<Registro>().ToTable("Registro")
+                .HasOne(p => p.DosisBiologico)
+                .WithMany(r => r.Registros)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+               .IsRequired();
         }
         
     }

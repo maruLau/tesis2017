@@ -20,11 +20,11 @@ namespace PaiVapp.Controllers
         }
 
         // GET: Pais
-        /*
-        public async Task<IActionResult> Index()
+        
+        public async Task<IActionResult> Index2()
         {
             return View(await _context.Paises.ToListAsync());
-        }*/
+        }
         public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewData["CurrentSort"] = sortOrder;
@@ -189,5 +189,7 @@ namespace PaiVapp.Controllers
         {
             return _context.Paises.Any(e => e.PaisID == id);
         }
+    
+      
     }
 }

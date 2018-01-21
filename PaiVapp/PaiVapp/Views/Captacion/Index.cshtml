@@ -9,111 +9,28 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table id="lista" class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.CI)
-                </th>
+             
                 <th>
                     @Html.DisplayNameFor(model => model.CICod)
                 </th>
+               
                 <th>
-                    @Html.DisplayNameFor(model => model.RegNacimiento)
-                </th>
+                 Nombres</th>
+           
                 <th>
-                    @Html.DisplayNameFor(model => model.PNombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SNombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TNombre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PApellido)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SApellido)
-                </th>
+                 Apellidos </th>
+            
                 <th>
                     @Html.DisplayNameFor(model => model.FNacimiento)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Sexo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CIMadre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NomApMadre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EmailMadre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CIPadreT)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.NomApPadre)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EmailPT)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Barrio)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Direccion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ReferenciaDir)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Telefono)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Localidad)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ComIndigena)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TComIndigena)
-                </th>
+     
                 <th>
                     @Html.DisplayNameFor(model => model.AlergiaSN)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AlergVacuna)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AlerMedic)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AlergOtros)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DescOtros)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EstadoNut)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Pani)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.LacMaterna)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SegMedico)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TSeguro)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DSeguro)
-                </th>
+              
             <th>
                 @Html.DisplayNameFor(model => model.Departamento)
             </th>
@@ -130,107 +47,24 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CI)
-            </td>
+           @Html.DisplayFor(modelItem => item.CICod)
+        </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CICod)
+                @Html.DisplayFor(modelItem => item.PNombre) @Html.DisplayFor(modelItem => item.SNombre) @Html.DisplayFor(modelItem => item.TNombre)
             </td>
+       
             <td>
-                @Html.DisplayFor(modelItem => item.RegNacimiento)
+                @Html.DisplayFor(modelItem => item.PApellido) @Html.DisplayFor(modelItem => item.SApellido)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PApellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SApellido)
-            </td>
+         
             <td>
                 @Html.DisplayFor(modelItem => item.FNacimiento)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sexo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CIMadre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomApMadre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailMadre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CIPadreT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomApPadre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailPT)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Barrio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ReferenciaDir)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Localidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ComIndigena)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TComIndigena)
-            </td>
+          
             <td>
                 @Html.DisplayFor(modelItem => item.AlergiaSN)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AlergVacuna)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AlerMedic)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AlergOtros)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DescOtros)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstadoNut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pani)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LacMaterna)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SegMedico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TSeguro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DSeguro)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.Departamento.DepartamentoID)
             </td>
@@ -249,3 +83,6 @@
 }
     </tbody>
 </table>
+
+
+

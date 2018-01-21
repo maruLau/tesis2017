@@ -22,6 +22,7 @@ namespace PaiVapp.Models
         public Edad Edad { get; set; }
         public Biologico Biologico{get;set;}
         public Dosis Dosis { get; set; }
+        public ICollection<Registro> Registros { get; set; }
 
     }
 }

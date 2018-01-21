@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PaiVapp.Models.Registro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaV)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Lote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Encargado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Captacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DosisBiologico)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Encargado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Captacion.CaptacionID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DosisBiologico.DosisBiologicoID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RegistroID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RegistroID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RegistroID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 namespace PaiVapp.Models
 {
     public class Pais
-    {
+    {   
+        [Key]
         public int PaisID { get; set; }
         [Require]
-        [StringLength(50, MinimumLength = 4, ErrorMessage="El nombre del Pais no puede ser menor a 4 caracteres ni mayor a 50")]
+        [StringLength(50, MinimumLength = 4, ErrorMessage="No puede ser menor a 4 caracteres ni mayor a 50")]
         [Display(Name = "Pais")]
         public string NPais { get; set; }
+        [StringLength(50, MinimumLength = 4, ErrorMessage = "No puede ser menor a 4 caracteres ni mayor a 50")]
+        [Display(Name = "Nacionalidad")]
+        public string Nacionalidad { get; set; }
+
         [Require]
         public Boolean Estado { get; set; }
 

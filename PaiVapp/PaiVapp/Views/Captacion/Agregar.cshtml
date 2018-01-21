@@ -1,11 +1,9 @@
-﻿@model PaiVapp.Models.Captacion
-
-@{
-    ViewData["Title"] = "Create";
-}
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
 
 <h2>Create</h2>
-
 <h4>Captacion</h4>
 <hr />
 <div class="row">
@@ -69,7 +67,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="PaisID" class="control-label"></label>
-                <select asp-for="PaisID" class ="form-control" asp-items="ViewBag.PaisID"></select>
+                <select asp-for="PaisID" class="form-control" asp-items="ViewBag.PaisID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="CIMadre" class="control-label"></label>
@@ -103,11 +101,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="DepartamentoID" class="control-label"></label>
-                <select asp-for="DepartamentoID" class ="form-control" asp-items="ViewBag.DepartamentoID"></select>
+                <select asp-for="DepartamentoID" class="form-control" asp-items="ViewBag.DepartamentoID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="DistritoID" class="control-label"></label>
-                <select asp-for="DistritoID" class ="form-control" asp-items="ViewBag.DistritoID"></select>
+                <select asp-for="DistritoID" class="form-control" asp-items="ViewBag.DistritoID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Barrio" class="control-label"></label>
@@ -227,11 +225,7 @@
         </form>
     </div>
 </div>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
