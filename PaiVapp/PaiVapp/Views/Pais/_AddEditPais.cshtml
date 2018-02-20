@@ -1,0 +1,42 @@
+﻿
+@using PaiVapp.Models
+@model PaiVapp.Models.Views.PaisView
+@{ var Heading = String.Format("{0} Pais", @Model.PaisID == 0 ? "Add" : "Edit"); }
+
+<form asp-action="AddEditPais" role="form">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">@Heading</h4>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="form-group">
+            <label asp-for="NPais" class="col-lg-3 col-sm-3 control-label"></label>
+            <div class="col-lg-6">
+                <input asp-for="NPais" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nacionalidad" class="col-lg-3 col-sm-3 control-label"></label>
+            <div class="col-lg-6">
+                <input asp-for="Nacionalidad" class="form-control" />
+            </div>
+        </div>
+        @if (@Model.PaisID != 0)
+    {
+        <div class="form-group">
+            <label asp-for="Estado" class="col-lg-3 col-sm-3 control-label"></label>
+            <div class="col-lg-6">
+                <input asp-for="Estado" class="form-control" />
+            </div>
+        </div>
+}
+
+    </div>
+    <div class="modal-footer">
+        <button data-dismiss="modal" id="btn-cancel" class="btn btn-default" type="button">Cancel</button>
+        <button class="btn btn-success" id="btn-submit" type="submit"> Submit            </button>
+
+    </div>
+
+</form>

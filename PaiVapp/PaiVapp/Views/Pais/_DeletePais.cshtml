@@ -1,0 +1,23 @@
+﻿
+@using PaiVapp.Models
+@model PaiVapp.Models.Views.PaisView
+@using (Html.BeginForm())
+{
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Eliminar</h4>
+    </div>
+
+    <div class="modal-body form-horizontal">
+      
+        Quiere eliminar @Model.NPais?
+    </div>
+    <div class="modal-footer">
+        <button data-dismiss="modal" id="btn-cancel" class="btn btn-default" type="button">Cancelar</button>
+        <button class="btn btn-success" id="btn-submit" type="submit"> Eliminar            </button>
+
+    </div>
+}
+
+
+

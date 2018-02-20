@@ -17,6 +17,7 @@ namespace PaiVapp.Models
         [StringLength(50, MinimumLength = 4, ErrorMessage = "El nombre del Departamento no puede ser menor a 4 caracteres ni mayor a 50")]
         [Display(Name = "Departamento")]
         public string NDepartamento { get; set; }
+        public string FullDpto { get { return string} }
         [Require]
         public Boolean Estado { get; set; }
         public int PaisID { get; set; }

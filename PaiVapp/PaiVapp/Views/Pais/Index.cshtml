@@ -1,75 +1,83 @@
-﻿@model PaginatedList<PaiVapp.Models.Pais>
-@{
-    ViewData["Title"] = "Lista";
+﻿@{
+    ViewData["Title"] = "Pais";
 }
+@using PaiVapp.Models
+@model IEnumerable<PaiVapp.Models.Views.PaisView>
+
 <div class="page-header">
-    <h2>Paises</h2>
+    <h2>@ViewData["Title"]</h2>
+    <h3>@ViewData["Message"]</h3>
 </div>
-<p>
 
-    <a asp-action="Create" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Crear Pais</a>
-</p>
-
-<div class="contornos">
-    <form asp-action="Index" method="get">
-        <div class="form-actions no-color">
-            <p>
-                Buscar por nombre de Pais: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
-                <button type="submit" value=" Search" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                |  <a asp-action="Index" class="btn btn-default"><span class="glyphicon glyphicon-th-list" aria-hidden="false"></span> Mostrar Lista completa</a>
-
-            </p>
+<div class="panel panel-primary">
+    <div class="panel-heading panel-head">Pais</div>
+    <div class="panel-body">
+        <div class="btn-group">
+            <a id="createEditPaisModal" data-toggle="modal" asp-action="AddEditPais" data-target="#modal-action-pais" class="btn btn-primary">
+                <i class="glyphicon glyphicon-plus"></i>  Add Pais
+            </a>
         </div>
-    </form>
-    <table class="table table-bordered table-striped table-hover">
-        <thead>
-            <tr>
-                <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PaisSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Pais</a>
-                </th>
-                <th>
-                    Estado
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        <div class="top-buffer"></div>
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NPais)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Estado)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.PaisID"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a> |
-                        <a asp-action="Details" asp-route-id="@item.PaisID"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a> |
-                        <a asp-action="Delete" asp-route-id="@item.PaisID"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                    </td>
+                    <th>Pais</th>
+                    <th>Nacionalidad</th>
+                    <th>Estado</th>
+                    <th>Action</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    @{
-        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-    }
-
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-page="@(Model.PageIndex - 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-default previous @prevDisabled">
-        <span aria-hidden="true">&larr;</span>
-        Anterior
-    </a>
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-page="@(Model.PageIndex + 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-default next @nextDisabled">
-        Siguiente <span aria-hidden="true">&rarr;</span>
-    </a>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.NPais)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Nacionalidad)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Estado)</td>
+                        <td>
+                            <a id="editPaisModal" data-toggle="modal" asp-action="AddEditPais" asp-route-id="@item.PaisID" data-target="#modal-action-pais"
+                               class="btn btn-info">
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </a>
+                            <a id="deletePaisModal" data-toggle="modal" asp-action="DeletePais" asp-route-id="@item.PaisID" data-target="#modal-action-pais" class="btn btn-danger">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
+<div aria-hidden="true" aria-labelledby="modal-action-pais-label" role="dialog" tabindex="-1" id="modal-action-pais" class="modal fade">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+@section scripts
+    {
+    <script>
+        (function ($) {
+            function Pais() {
+                var $this = this;
+
+                function initilizeModel() {
+                    $("#modal-action-pais").on('loaded.bs.modal', function (e) {
+                    }).on('hidden.bs.modal', function (e) {
+                        $(this).removeData('bs.modal');
+                    });
+                }
+                $this.init = function () {
+                    initilizeModel();
+                }
+            }
+            $(function () {
+                var self = new Pais();
+                self.init();
+            })
+        }(jQuery))
+
+    </script>
+}
